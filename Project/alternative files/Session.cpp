@@ -38,7 +38,7 @@ void Session::run()
 				for (Component *c : comps)
 					c->mouseUp(event.button.x, event.button.y);
 				break;
-			} //switch
+		 //switch
 		}	  //inre while
 
 		for (Component *c : comps)
