@@ -6,7 +6,7 @@
 /*General base class for game objects in DivisionEngine*/
 class GameObject
 {
-    private: 
+private:
     // ta bort värdesemantik från klassen
 
 protected:
@@ -21,7 +21,7 @@ public:
     virtual void mouseUp(int x, int y){};   // function for mouse release
     virtual void keyDown(){};               // function for key press
     virtual void keyUp(){};                 // function for key release
-    virtual ~GameObject() = 0; 
+    virtual ~GameObject() = 0;
 };
 
 #endif
