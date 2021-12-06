@@ -5,18 +5,20 @@
 #include <SDL2/SDL_mixer.h>
 #include <string>
 
-struct SystemResources
+namespace diva
 {
-    SystemResources();
-    ~SystemResources();
+    struct SystemResources
+    {
+        SystemResources();
+        ~SystemResources();
 
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    Mix_Chunk* music;
+        SDL_Window *window;
+        SDL_Renderer *renderer;
+        Mix_Chunk *music;
+    };
+
+    //extern std::string resPath = "./resources/";
+    extern SystemResources system;
 };
-
-extern std::string resPath = "./resources/";
-extern SystemResources system;
-
 
 #endif
