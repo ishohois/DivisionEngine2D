@@ -17,7 +17,7 @@ namespace diva
         Mix_Chunk *music;
     };
 
-    //extern std::string resPath = "./resources/";
+    extern std::string resPath;
     extern SystemResources system;
 };
 

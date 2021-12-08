@@ -12,9 +12,9 @@ namespace diva
         // ta bort värdesemantik från klassen
         GameObject(const GameObject &other) = delete;
         const GameObject &operator=(const GameObject &other) = delete;
-        SDL_Rect rect; // used for moving the character and collision detection
 
     protected:
+        SDL_Rect rect; // used for moving the character and collision detection
         GameObject(int x, int y, int w, int h) : rect{x, y, w, h} {} // only available for sub classes of GameObject
     public:
         GameObject(){};
@@ -23,9 +23,9 @@ namespace diva
         virtual void draw() const = 0;          // abstract function to be implemented by sub classes
         virtual void mouseDown(int x, int y){}; // function for mouse press
         virtual void mouseUp(int x, int y){};   // function for mouse release
-        virtual void keyDown(){};               // function for key press
-        virtual void keyUp(){};                 // function for key release
-        virtual ~GameObject() = 0;
+        virtual void keyDown(SDL_Event e){};               // function for key press
+        virtual void keyUp(SDL_Event e){};                 // function for key release
+        virtual ~GameObject(){};
     };
 };
 

@@ -21,5 +21,6 @@ namespace diva
         SDL_Quit();
     }
     
+    std::string resPath = "./resources/";
     SystemResources system;
 };

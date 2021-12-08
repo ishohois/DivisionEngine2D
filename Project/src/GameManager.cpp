@@ -50,13 +50,13 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
             case SDL_KEYDOWN:
                 for (auto *g : gameObjects)
                 {
-                    g->keyDown();
+                    g->keyDown(e);
                 }
                 break;
             case SDL_KEYUP:
                 for (auto *g : gameObjects)
                 {
-                    g->keyUp();
+                    g->keyUp(e);
                 }
                 break;
             }
