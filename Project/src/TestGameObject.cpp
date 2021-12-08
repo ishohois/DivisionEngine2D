@@ -8,10 +8,17 @@ namespace diva
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(x, y, w, h)
     {
         texture = IMG_LoadTexture(system.renderer, (resPath + "images/dot40x40.bmp").c_str());
+        input = new Input(&rect);
     }
 
-    void TestGameObject::gameObjectUpdate()
+    void TestGameObject::gameObjectUpdate() // Update i unity gmaeObject
     {
+
+        if (isMovingXAxel)
+            input->horizontalMovement(speed);
+
+        isMovingXAxel = false;
+
         // if (moveUp)
         // {
         //     rect.y--;
@@ -20,14 +27,14 @@ namespace diva
         // {
         //     rect.y++;
         // }
-        if (moveLeft)
-        {
-            rect.x--;
-        }
-        if (moveRight)
-        {
-            rect.x++;
-        }
+        // if (moveLeft)
+        // {
+        //     rect.x--;
+        // }
+        // if (moveRight)
+        // {
+        //     rect.x++;
+        // }
     }
 
     void TestGameObject::draw() const
@@ -35,14 +42,14 @@ namespace diva
         SDL_RenderCopy(system.renderer, texture, NULL, &rect);
     }
 
-    void TestGameObject::keyDown(SDL_Event e)
+    void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
     {
         switch (e.key.keysym.sym)
         {
         case SDLK_DOWN:
             // moveUp = false;
             // moveDown = true;
-            rect.y++;
+            rect.y = rect.y + 2;
             break;
         case SDLK_UP:
             // moveDown = false;
@@ -50,12 +57,12 @@ namespace diva
             rect.y--;
             break;
         case SDLK_LEFT:
-            moveRight = false;
-            moveLeft = true;
+            isMovingXAxel = true;
+            speed = -5;
             break;
         case SDLK_RIGHT:
-            moveLeft = false;
-            moveRight = true;
+            isMovingXAxel = true;
+            speed = 5;
             break;
         }
     }
@@ -71,10 +78,10 @@ namespace diva
             moveUp = false;
             break;
         case SDLK_LEFT:
-            moveLeft = false;
+            //moveLeft = false;
             break;
         case SDLK_RIGHT:
-            moveRight = false;
+            //moveRight = false;
             break;
         }
     }
@@ -83,4 +90,5 @@ namespace diva
     {
         SDL_DestroyTexture(texture);
     }
+
 };
