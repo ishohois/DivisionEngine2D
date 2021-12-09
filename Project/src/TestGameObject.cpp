@@ -1,45 +1,26 @@
 #include "TestGameObject.h"
 #include <SDL2/SDL_image.h>
 #include <SystemResources.h>
-#include <SDL2/SDL.h>
+
 
 namespace diva
 {
-    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(x, y, w, h)
+    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), srcRect{0,0, w, h}, dstRect{(int)position.x, (int)position.y, w, h} 
     {
         texture = IMG_LoadTexture(system.renderer, (resPath + "images/dot40x40.bmp").c_str());
-        input = new Input(&rect);
+        input = new Input(&dstRect);
     }
 
     void TestGameObject::gameObjectUpdate() // Update i unity gmaeObject
     {
-
-        if (isMovingXAxel)
-            input->horizontalMovement(speed);
-
-        isMovingXAxel = false;
-
-        // if (moveUp)
-        // {
-        //     rect.y--;
-        // }
-        // if (moveDown)
-        // {
-        //     rect.y++;
-        // }
-        // if (moveLeft)
-        // {
-        //     rect.x--;
-        // }
-        // if (moveRight)
-        // {
-        //     rect.x++;
-        // }
+        position.x += 1;
     }
 
-    void TestGameObject::draw() const
+    void TestGameObject::draw()
     {
-        SDL_RenderCopy(system.renderer, texture, NULL, &rect);
+        dstRect.x = position.x;
+        dstRect.y = position.y;
+        SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0,0, flip);
     }
 
     void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
@@ -47,22 +28,15 @@ namespace diva
         switch (e.key.keysym.sym)
         {
         case SDLK_DOWN:
-            // moveUp = false;
-            // moveDown = true;
-            rect.y = rect.y + 2;
             break;
         case SDLK_UP:
-            // moveDown = false;
-            // moveUp = true;
-            rect.y--;
+
             break;
         case SDLK_LEFT:
-            isMovingXAxel = true;
-            speed = -5;
+
             break;
         case SDLK_RIGHT:
-            isMovingXAxel = true;
-            speed = 5;
+
             break;
         }
     }
@@ -72,16 +46,16 @@ namespace diva
         switch (e.key.keysym.sym)
         {
         case SDLK_DOWN:
-            moveDown = false;
+
             break;
         case SDLK_UP:
-            moveUp = false;
+  
             break;
         case SDLK_LEFT:
-            //moveLeft = false;
+ 
             break;
         case SDLK_RIGHT:
-            //moveRight = false;
+
             break;
         }
     }
@@ -89,6 +63,7 @@ namespace diva
     TestGameObject::~TestGameObject()
     {
         SDL_DestroyTexture(texture);
+        delete input;
     }
 
 };

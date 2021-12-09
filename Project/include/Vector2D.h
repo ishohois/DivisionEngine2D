@@ -39,6 +39,7 @@ namespace diva
             y *= scalar;
             return *this;
         }
+
         const Vector2D operator*(float scalar) const
         {
             return Vector2D(*this) *= scalar;
@@ -93,12 +94,7 @@ namespace diva
             os << "(" << v.x << ", " << v.y << ")";
             return os;
         }
-
-        // public:
-        //     static const Vector2D left(-1.0f, 0f);
-        //     static const Vector2D right(1.0f, 0f);
-        //     static const Vector2D up(0, 1.0f);
-        //     static const Vector2D down(0, -1.0f);
     };
 }
+
 #endif
