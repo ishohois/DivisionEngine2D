@@ -13,9 +13,10 @@ namespace diva
         std::vector<GameObject *> gameObjects; //
         std::vector<GameObject *> added;       //
         std::vector<GameObject *> removed;     //
+
         bool quit = false;
         void handleInput(SDL_Event &);
-        void updateObjects();
+        void updateObjects(float dt);
         void render();
         void delay(Uint32 nextTick);
 

@@ -1,5 +1,7 @@
 #include "GameManager.h"
 #include "SystemResources.h"
+#include <iostream>
+#include <Timer.h>
 
 namespace diva
 {
@@ -14,19 +16,22 @@ Rendera gameObject
 Kontrollera tiden och evntuellet fördröja den. FPS.
 */
 
-#define FPS 60;
+    //#define FPS 60;
+    Timer* Timer::instance = nullptr;
+    Timer *time = Timer::getInstance(); 
 
-    void GameManager::add(GameObject * gameObject)
+
+    void GameManager::add(GameObject *gameObject)
     {
         added.push_back(gameObject);
     }
 
-    void GameManager::remove(GameObject * gameObject)
+    void GameManager::remove(GameObject *gameObject)
     {
         removed.push_back(gameObject);
     }
 
-    void GameManager::handleInput(SDL_Event & e)
+    void GameManager::handleInput(SDL_Event &e)
     {
         while (SDL_PollEvent(&e))
         {
@@ -63,11 +68,11 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         }
     }
 
-    void GameManager::updateObjects()
+    void GameManager::updateObjects(float dt)
     {
         for (auto *g : gameObjects)
         {
-            g->gameObjectUpdate();
+            g->gameObjectUpdate(dt);
         }
 
         for (auto *g : added)
@@ -112,23 +117,24 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         {
             SDL_Delay(delay);
         }
+        std::cout << delay << std::endl;
     }
 
     void GameManager::runGameLoop()
     {
-        Uint32 tickInterval = 1000 / FPS; // milliseconds per frame
+          
+        // Uint32 tickInterval = 1000 / FPS; // milliseconds per frame
         while (!quit)
         {
             SDL_Event event;
-            Uint32 nextTick = tickInterval + SDL_GetTicks();
+            Uint32 nextTick = time->tickInterval + time->getTicks();
             // handle input
             handleInput(event);
             // update gameobject
-            updateObjects();
+            updateObjects(time->deltaTime(nextTick));
             // render objects
             render();
-            delay(nextTick);
+            time->frameRateCap(nextTick);
         }
     }
 };
-

@@ -2,6 +2,7 @@
 #include "Input.h"
 #include <SDL2/SDL.h>
 #include "Vector2D.h"
+#include "Rigidbody2D.h"
 
 namespace diva
 {
@@ -13,6 +14,7 @@ namespace diva
         Input *input;
         Vector2D position;
         SDL_RendererFlip flip = SDL_FLIP_NONE;
+        RigidBody2D rb;
 
     protected:
         SDL_Rect srcRect;
@@ -22,7 +24,7 @@ namespace diva
         TestGameObject(int x, int y, int w, int h);
         ~TestGameObject();
         virtual void draw();
-        virtual void gameObjectUpdate();
+        virtual void gameObjectUpdate(float dt);
         void verticalMovement();
 
         virtual void keyDown(SDL_Event e);

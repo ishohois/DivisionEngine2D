@@ -1,17 +1,21 @@
 #include "GameManager.h"
 #include "SystemResources.h"
 #include "TestGameObject.h"
-#include "Vector2D.h"
+#include "Timer.h"
 
 using namespace diva;
 
-GameManager* g = nullptr;
+GameManager *g = nullptr;
 
 int main(int argc, char *argv[])
 {
+    
+    
     g = new GameManager();
+    
+    
 
-    TestGameObject* tg = new TestGameObject(0,0,50,50);
+    TestGameObject *tg = new TestGameObject(640, 0, 50, 50);
     g->add(tg);
     g->runGameLoop();
 
