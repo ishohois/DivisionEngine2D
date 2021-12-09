@@ -16,17 +16,17 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
 #define FPS 60;
 
-    void GameManager::add(GameObject * gameObject)
+    void GameManager::add(GameObject *gameObject)
     {
         added.push_back(gameObject);
     }
 
-    void GameManager::remove(GameObject * gameObject)
+    void GameManager::remove(GameObject *gameObject)
     {
         removed.push_back(gameObject);
     }
 
-    void GameManager::handleInput(SDL_Event & e)
+    void GameManager::handleInput(SDL_Event &e)
     {
         while (SDL_PollEvent(&e))
         {
@@ -65,6 +65,7 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::updateObjects()
     {
+
         for (auto *g : gameObjects)
         {
             g->gameObjectUpdate();
@@ -114,6 +115,7 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         }
     }
 
+
     void GameManager::runGameLoop()
     {
         Uint32 tickInterval = 1000 / FPS; // milliseconds per frame
@@ -121,14 +123,16 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         {
             SDL_Event event;
             Uint32 nextTick = tickInterval + SDL_GetTicks();
+      
             // handle input
             handleInput(event);
+      
             // update gameobject
             updateObjects();
+      
             // render objects
             render();
             delay(nextTick);
         }
     }
 };
-
