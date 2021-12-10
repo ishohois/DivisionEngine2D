@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 namespace diva
 {
-
+    TextureManager *TextureManager::instance = nullptr;
     // When we call this funtion we have a texture that can be used by accessing it form it's ID.
     // Useing this in draw;
     bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *TRenderer)
@@ -38,7 +38,7 @@ namespace diva
         srcRect.w = destRect.w = width;
         srcRect.h = destRect.h = height;
         destRect.x = x;
-        destRect.x = y;
+        destRect.y = y;
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
     }
@@ -56,7 +56,6 @@ namespace diva
         srcRect.h = destRect.h = height;
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
- 
     }
 
 }

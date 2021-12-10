@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "SystemResources.h"
+#include "TextureManager.h"
 
 namespace diva
 {
@@ -15,6 +16,8 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 */
 
 #define FPS 60;
+     
+    TextureManager *tMan = TextureManager::getInstance();
 
     void GameManager::add(GameObject *gameObject)
     {
@@ -97,11 +100,13 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::render()
     {
-        SDL_SetRenderDrawColor(system.renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(system.renderer, 255, 255, 255, 0);
         SDL_RenderClear(system.renderer);
         for (auto *g : gameObjects)
         {
-            g->draw();
+            g->draw(); 
+            
+            
         }
         SDL_RenderPresent(system.renderer);
     }

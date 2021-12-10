@@ -9,8 +9,17 @@ namespace diva
     class TextureManager
     {
     private:
-        /* data */
+        TextureManager()= default;
+        static TextureManager* instance; 
     public:
+
+        static TextureManager * getInstance(){
+            if(!instance){
+                instance = new TextureManager();
+            }
+            return instance;
+        }
+
         bool load(std::string fileName, std::string id, SDL_Renderer *TRenderer);
         //Draw
         void draw(std::string id, int x, int y, int width, int height,

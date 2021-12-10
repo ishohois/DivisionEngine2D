@@ -7,9 +7,9 @@ namespace diva
     class TestGameObject : public GameObject
     {
     private:
-        SDL_Texture *texture;
+        //SDL_Texture *texture;
         Input* input;
-        GameStateMachine* m_pGameStateMachine;
+        
         bool moveUp;
         bool moveDown;
         bool moveRight;
