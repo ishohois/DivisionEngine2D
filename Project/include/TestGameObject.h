@@ -9,6 +9,7 @@ namespace diva
     private:
         SDL_Texture *texture;
         Input* input;
+        GameStateMachine* m_pGameStateMachine;
         bool moveUp;
         bool moveDown;
         bool moveRight;
@@ -17,7 +18,7 @@ namespace diva
         bool isMovingXAxel;
         bool isMovingYAxel;
         bool entryState;
-
+        
         int speed = 0;
         int setStateToHorizontal;
 

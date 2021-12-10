@@ -2,6 +2,8 @@
 #include <SDL2/SDL_image.h>
 #include <SystemResources.h>
 #include <SDL2/SDL.h>
+#include "GameStateMachine.h"
+#include "MenuState.h"
 
 namespace diva
 {
@@ -9,6 +11,9 @@ namespace diva
     {
         texture = IMG_LoadTexture(system.renderer, (resPath + "images/dot40x40.bmp").c_str());
         input = new Input(&rect);
+        m_pGameStateMachine = new GameStateMachine();
+        m_pGameStateMachine ->changeState(new MenuState());
+    
     }
 
     void TestGameObject::gameObjectUpdate() // Update i unity gmaeObject
