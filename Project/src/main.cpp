@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     
     
 
-    TestGameObject *tg = new TestGameObject(640, 0, 50, 50);
+    TestGameObject *tg = new TestGameObject(640, 0, 50, 80);
     g->add(tg);
     g->runGameLoop();
 

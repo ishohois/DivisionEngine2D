@@ -21,17 +21,6 @@ namespace diva
 
             rbVelocity = rbAcceleration * dt;
             rbPosition = rbVelocity * dt;
-            // force += (MASS * GRAVITY);
-            // acceleration.x = (force.x + FRICTION) / MASS;
-            // acceleration.y = (force.y + GRAVITY) / MASS;
-            // velocity += (force / MASS) * dt;
-            // rbPos += velocity * dt;
-
-            //force = Vector2D(0, 0); // reset the net force
-
-            // std::cout << "Acceleration.y = " << acceleration.y << std::endl;
-            // std::cout << velocity << std::endl;
-            // std::cout << rbPos << std::endl;
         }
 
         inline void setMass(float mass) { rbMass = mass; }

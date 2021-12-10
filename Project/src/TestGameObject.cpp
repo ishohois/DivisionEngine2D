@@ -4,10 +4,14 @@
 
 namespace diva
 {
+    enum States{
+        walkState, jumpState, standState
+    };
+
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y),
-                                                                 srcRect{0, 0, w, h}, dstRect{(int)position.x, (int)position.y, w, h}
+                                                                 srcRect{0, 0, 375, 512}, dstRect{(int)position.x, (int)position.y, w, h}
     {
-        texture = IMG_LoadTexture(system.renderer, (resPath + "images/dot40x40.bmp").c_str());
+        texture = IMG_LoadTexture(system.renderer, (resPath + "images/Dude.png").c_str());
         input = new Input(&dstRect);
     }
 
@@ -15,10 +19,9 @@ namespace diva
     {
         rb.setGravity(1.0f);
         rb.updatePhysics(dt);
-        rb.applyForceX(2);
 
-        position.y += rb.getRbPosition().y;
-        position.x += rb.getRbPosition().x;
+        States currentState;
+        currentState = walkState;
     }
 
     void TestGameObject::draw()
