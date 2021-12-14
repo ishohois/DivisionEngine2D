@@ -13,7 +13,7 @@ namespace diva
         standState
     };
 
-    int currentRow =1, currentFrame=1;
+    int currentRow = 1, currentFrame = 1;
 
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player"),
                                                                  srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h}
@@ -30,9 +30,6 @@ namespace diva
         collider.updateCollider();
         currentFrame = int(((SDL_GetTicks() / 100) % 4));
         std::cout << currentFrame << "I GOU" << std::endl;
-
-
-        
     }
 
     bool TestGameObject::checkCollision(const SDL_Rect &a, const SDL_Rect &b)
@@ -80,13 +77,13 @@ namespace diva
 
     void TestGameObject::draw() const
     {
+
         // dstRect.x = position.x;
         //  dstRect.y = position.y;
         //  SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0, 0, flip);
-        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 128, 133, system.renderer);
-        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 128, 133, currentRow, currentFrame, system.renderer);
-       
 
+        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 128, 133, system.renderer, flip);
+        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 128, 133, currentRow, currentFrame, system.renderer,flip);
     }
 
     void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
@@ -101,8 +98,10 @@ namespace diva
             break;
         case SDLK_LEFT:
             position.x -= 5.0f;
+            flip = SDL_FLIP_HORIZONTAL;
             break;
         case SDLK_RIGHT:
+            flip = SDL_FLIP_NONE;
             position.x += 5.0f;
             break;
         }
@@ -129,7 +128,7 @@ namespace diva
 
     TestGameObject::~TestGameObject()
     {
-       // SDL_DestroyTexture(texture);
+        // SDL_DestroyTexture(texture);
         delete input;
     }
 

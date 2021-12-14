@@ -26,6 +26,7 @@ namespace diva
         // Implementing a Singelton.
         TextureManager() = default;
         static TextureManager *instance; // A pointer to a static instance.
+        
     public:
         static TextureManager *getInstance()
         {   // this is how we accses an instance.
