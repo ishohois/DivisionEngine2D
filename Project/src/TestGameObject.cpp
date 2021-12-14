@@ -4,14 +4,17 @@
 
 namespace diva
 {
-    enum States{
-        walkState, jumpState, standState
+    enum States
+    {
+        walkState,
+        jumpState,
+        standState
     };
 
-    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y),
-                                                                 srcRect{0, 0, 375, 512}, dstRect{(int)position.x, (int)position.y, w, h}
+    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player"),
+    srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h} 
     {
-        texture = IMG_LoadTexture(system.renderer, (resPath + "images/Dude.png").c_str());
+        texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block 2.png").c_str());
         input = new Input(&dstRect);
     }
 
@@ -19,9 +22,81 @@ namespace diva
     {
         rb.setGravity(1.0f);
         rb.updatePhysics(dt);
+        collider.updateCollider();
 
-        States currentState;
-        currentState = walkState;
+        // SDL_Rect intersect;
+
+        //if (SDL_IntersectRect(&boxCollider, &worldCollider, &intersect))
+        // {
+        //     float xDiff = (boxCollider.x + (boxCollider.w / 2)) - (intersect.x + (intersect.w / 2));
+        //     float yDiff = (boxCollider.y + (boxCollider.h / 2)) - (intersect.y + (intersect.h / 2));
+        //     float resolve = 0;
+        //     // std::cout << "intersect.x= " << intersect.x << "intersect.y= " << intersect.y << std::endl;
+
+        //     if (fabs(xDiff) > fabs(yDiff))
+        //     {
+        //         position += Vector2D(xDiff > 0 ? intersect.w : -intersect.w, 0);
+        //     }
+        //     else
+        //     {
+        //         position += Vector2D(0, yDiff > 0 ?intersect.h : -intersect.h);
+        //     }
+
+        //     // if (fabs(xDiff) > fabs(yDiff))
+        //     // {
+        //     //     resolve = (xDiff > 0 ) ? intersect.w: -intersect.w;
+        //     //     std::cout << "resolve= " << resolve << std::endl;
+        //     //     position += Vector2D(resolve, 0);
+        //     // }else{
+        //     //     position += Vector2D(0, yDiff);
+        //     // }
+        // }
+
+        // States currentState;
+        // currentState = walkState;
+    }
+
+    bool TestGameObject::checkCollision(const SDL_Rect &a, const SDL_Rect &b)
+    {
+
+        // sides of own collider
+        int leftA, leftB;
+        int rightA, rightB;
+        int topA, topB;
+        int bottomA, bottomB;
+
+        // calculate the sides of rect A
+        leftA = a.x;
+        rightA = a.x + a.w;
+        topA = a.y;
+        bottomA = a.y + a.h;
+
+        //calculate the sides of rect B
+        leftB = b.x;
+        rightB = b.x + b.w;
+        topB = b.y;
+        bottomB = b.y + b.h;
+
+        // if any of the sides from A are outside of B
+        if (bottomA <= topB)
+        {
+            return false;
+        }
+        if (topA >= bottomB)
+        {
+            return false;
+        }
+        if (rightA <= leftB)
+        {
+            return false;
+        }
+        if (leftA >= rightB)
+        {
+            return false;
+        }
+
+        std::cout << "Kolliderar" << std::endl;
+        return true;
     }
 
     void TestGameObject::draw()
@@ -36,16 +111,16 @@ namespace diva
         switch (e.key.keysym.sym)
         {
         case SDLK_DOWN:
-            rb.setGravity(0.5f);
+            position.y += 5.0f;
             break;
         case SDLK_UP:
-            rb.setGravity(9);
+            position.y -= 5.0f;
             break;
         case SDLK_LEFT:
-
+            position.x -= 5.0f;
             break;
         case SDLK_RIGHT:
-
+            position.x += 5.0f;
             break;
         }
     }

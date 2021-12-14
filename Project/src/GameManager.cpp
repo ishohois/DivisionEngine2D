@@ -2,6 +2,9 @@
 #include "SystemResources.h"
 #include <iostream>
 #include <Timer.h>
+#include "CollisionHandler.h"
+#include "Contact.h"
+#include "TestGameObject.h"
 
 namespace diva
 {
@@ -17,9 +20,8 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 */
 
     //#define FPS 60;
-    Timer* Timer::instance = nullptr;
-    Timer *time = Timer::getInstance(); 
-
+    Timer *Timer::instance = nullptr;
+    Timer *time = Timer::getInstance();
 
     void GameManager::add(GameObject *gameObject)
     {
@@ -99,6 +101,29 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         removed.clear();
     }
 
+    void GameManager::addCollider(BoxCollider2D &b)
+    {
+        colliders.push_back(&b);
+    }
+
+    void GameManager::handleCollisions()
+    {
+        // BoxCollider2D *player = colliders[0];
+        // TestGameObject *tgo = dynamic_cast<TestGameObject *>(gameObjects[0]);
+        // BoxCollider2D *collRect = colliders[1];
+        Contact c;
+
+        for (auto b : colliders)
+        {
+            if (CollisionHandler::collisionDetection(*player, *b, c))
+            {
+
+                player->OnCollision(b, c);
+                b->OnCollision(p, c);
+            }
+        }
+    }
+
     void GameManager::render()
     {
         SDL_SetRenderDrawColor(system.renderer, 255, 255, 255, 255);
@@ -122,8 +147,6 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::runGameLoop()
     {
-          
-        // Uint32 tickInterval = 1000 / FPS; // milliseconds per frame
         while (!quit)
         {
             SDL_Event event;
@@ -132,6 +155,7 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
             handleInput(event);
             // update gameobject
             updateObjects(time->deltaTime(nextTick));
+            handleCollisions();
             // render objects
             render();
             time->frameRateCap(nextTick);

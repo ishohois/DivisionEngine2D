@@ -1,23 +1,30 @@
-#include "GameObject.h"
+#include <CollisionRectangle.h>
 #include <SDL2/SDL_image.h>
 #include <SystemResources.h>
 
+
+
 namespace diva
 {
-    class CollisionRectangle : public GameObject
+
+    CollisionRectangle::CollisionRectangle(Vector2D& objectpos, int w, int h) : GameObject(), 
+    collider{objectpos, w, h, "Collision"},
+    srcRect{(int)objectpos.x, (int)objectpos.y, w, h}
     {
-    public:
-        CollisionRectangle(int x, int y, int w, int h) : GameObject(), srcRect{x, y, w, h}{
-            texture = IMG_LoadTexture(system.renderer, (resPath + "images/Dude.png").c_str());
-        }
+        texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block.png").c_str());
+    }
+    void CollisionRectangle::gameObjectUpdate(float dt) // Update i unity gameObject
+    {
+    }
 
-        ~CollisionRectangle(){
-            delete texture;
-        }
+    void CollisionRectangle::draw()
+    {
+        SDL_RenderCopy(system.renderer, texture, NULL, &srcRect);
+    }
 
-    private:
-        SDL_Rect srcRect;
-        SDL_Texture* texture;
-    };
+    CollisionRectangle::~CollisionRectangle()
+    {
+        SDL_DestroyTexture(texture);
+    }
 
 };
