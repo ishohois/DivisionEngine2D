@@ -108,20 +108,17 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::handleCollisions()
     {
-        // BoxCollider2D *player = colliders[0];
-        // TestGameObject *tgo = dynamic_cast<TestGameObject *>(gameObjects[0]);
-        // BoxCollider2D *collRect = colliders[1];
+
         Contact c;
 
-        for (auto b : colliders)
-        {
-            if (CollisionHandler::collisionDetection(*player, *b, c))
-            {
-
-                player->OnCollision(b, c);
-                b->OnCollision(p, c);
-            }
-        }
+        // for (auto b : colliders)
+        // {
+        //     if (CollisionHandler::collisionDetection(*player, *b, c))
+        //     {
+        //         player->OnCollision(b, c);
+        //         b->OnCollision(p, c);
+        //     }
+        // }
     }
 
     void GameManager::render()

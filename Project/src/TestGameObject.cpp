@@ -24,37 +24,8 @@ namespace diva
         rb.updatePhysics(dt);
         collider.updateCollider();
 
-        // SDL_Rect intersect;
-
-        //if (SDL_IntersectRect(&boxCollider, &worldCollider, &intersect))
-        // {
-        //     float xDiff = (boxCollider.x + (boxCollider.w / 2)) - (intersect.x + (intersect.w / 2));
-        //     float yDiff = (boxCollider.y + (boxCollider.h / 2)) - (intersect.y + (intersect.h / 2));
-        //     float resolve = 0;
-        //     // std::cout << "intersect.x= " << intersect.x << "intersect.y= " << intersect.y << std::endl;
-
-        //     if (fabs(xDiff) > fabs(yDiff))
-        //     {
-        //         position += Vector2D(xDiff > 0 ? intersect.w : -intersect.w, 0);
-        //     }
-        //     else
-        //     {
-        //         position += Vector2D(0, yDiff > 0 ?intersect.h : -intersect.h);
-        //     }
-
-        //     // if (fabs(xDiff) > fabs(yDiff))
-        //     // {
-        //     //     resolve = (xDiff > 0 ) ? intersect.w: -intersect.w;
-        //     //     std::cout << "resolve= " << resolve << std::endl;
-        //     //     position += Vector2D(resolve, 0);
-        //     // }else{
-        //     //     position += Vector2D(0, yDiff);
-        //     // }
-        // }
-
-        // States currentState;
-        // currentState = walkState;
     }
+
 
     bool TestGameObject::checkCollision(const SDL_Rect &a, const SDL_Rect &b)
     {
