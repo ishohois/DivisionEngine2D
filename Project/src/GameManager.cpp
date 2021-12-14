@@ -9,7 +9,7 @@
 
 namespace diva
 {
-    TextureManager *tMan = TextureManager::getInstance();
+    //TextureManager *tMan = TextureManager::getInstance();
     /* 
 RunGameloop
 Kontrollera input
