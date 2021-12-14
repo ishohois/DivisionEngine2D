@@ -47,6 +47,7 @@ namespace diva
     void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer, SDL_RendererFlip flip)
     {
 
+      
         SDL_Rect srcRect;
         SDL_Rect destRect;
 

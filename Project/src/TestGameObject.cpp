@@ -1,4 +1,5 @@
 #include "TestGameObject.h"
+#include "SDL2/SDL.h"
 #include <SDL2/SDL_image.h>
 #include <SystemResources.h>
 #include "TextureManager.h"
@@ -27,7 +28,9 @@ namespace diva
         rb.setGravity(1.0f);
         rb.updatePhysics(dt);
         collider.updateCollider();
-        currentFrame = 128 * int(((SDL_GetTicks() / 100) % 4));
+        currentFrame = int(((SDL_GetTicks() / 100) % 4));
+        std::cout << currentFrame << "I GOU" << std::endl;
+
 
         
     }
@@ -82,6 +85,8 @@ namespace diva
         //  SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0, 0, flip);
         TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 128, 133, system.renderer);
         TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 128, 133, currentRow, currentFrame, system.renderer);
+       
+
     }
 
     void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
