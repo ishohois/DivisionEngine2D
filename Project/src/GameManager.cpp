@@ -5,10 +5,11 @@
 #include "CollisionHandler.h"
 #include "Contact.h"
 #include "TestGameObject.h"
+#include "TextureManager.h"
 
 namespace diva
 {
-
+    TextureManager *tMan = TextureManager::getInstance();
     /* 
 RunGameloop
 Kontrollera input
