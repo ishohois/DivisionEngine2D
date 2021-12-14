@@ -8,7 +8,7 @@ namespace diva
     {
     public:
         CollisionRectangle(Vector2D &objectpos, int w, int h);
-        virtual void draw();
+        virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         BoxCollider2D &getCollider() { return collider; }
         ~CollisionRectangle();

@@ -19,7 +19,7 @@ namespace diva
         //GameObject(){};
         //SDL_Rect getRect() const { return rect; }
         virtual void gameObjectUpdate(float dt) = 0;    // abstract update function for game object called once per frame
-        virtual void draw() = 0;          // abstract function to be implemented by sub classes
+        virtual void draw() const = 0;          // abstract function to be implemented by sub classes
         virtual void mouseDown(int x, int y){}; // function for mouse press
         virtual void mouseUp(int x, int y){};   // function for mouse release
         virtual void keyDown(SDL_Event e){};               // function for key press

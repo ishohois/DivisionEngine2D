@@ -17,7 +17,7 @@ namespace diva
     {
     }
 
-    void CollisionRectangle::draw()
+    void CollisionRectangle::draw() const
     {
         SDL_RenderCopy(system.renderer, texture, NULL, &srcRect);
     }

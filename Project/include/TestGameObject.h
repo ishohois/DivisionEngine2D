@@ -11,7 +11,7 @@ namespace diva
     class TestGameObject : public GameObject
     {
     private:
-        SDL_Texture *texture;
+      //  SDL_Texture *texture;
         Input *input;
         SDL_RendererFlip flip = SDL_FLIP_NONE;
         RigidBody2D rb;
@@ -24,7 +24,7 @@ namespace diva
         Vector2D position;
         TestGameObject(int x, int y, int w, int h);
         ~TestGameObject();
-        virtual void draw();
+        virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         void verticalMovement();
         bool checkCollision(const SDL_Rect &, const SDL_Rect &);

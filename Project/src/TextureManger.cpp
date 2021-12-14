@@ -54,6 +54,8 @@ namespace diva
         srcRect.y = height * (currentRow - 1);
         srcRect.w = destRect.w = width;
         srcRect.h = destRect.h = height;
+        destRect.x = x;
+        destRect.y = y;
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
     }

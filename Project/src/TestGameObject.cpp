@@ -1,6 +1,7 @@
 #include "TestGameObject.h"
 #include <SDL2/SDL_image.h>
 #include <SystemResources.h>
+#include "TextureManager.h"
 
 namespace diva
 {
@@ -11,10 +12,13 @@ namespace diva
         standState
     };
 
+    int currentRow =1, currentFrame=1;
+
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player"),
-    srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h} 
+                                                                 srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h}
     {
-        texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block 2.png").c_str());
+        //texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block 2.png").c_str());
+        TextureManager::getInstance()->load((resPath + "images/char9.png").c_str(), "test", system.renderer);
         input = new Input(&dstRect);
     }
 
@@ -23,9 +27,10 @@ namespace diva
         rb.setGravity(1.0f);
         rb.updatePhysics(dt);
         collider.updateCollider();
+        currentFrame = 128 * int(((SDL_GetTicks() / 100) % 4));
 
+        
     }
-
 
     bool TestGameObject::checkCollision(const SDL_Rect &a, const SDL_Rect &b)
     {
@@ -70,11 +75,13 @@ namespace diva
         return true;
     }
 
-    void TestGameObject::draw()
+    void TestGameObject::draw() const
     {
-        dstRect.x = position.x;
-        dstRect.y = position.y;
-        SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0, 0, flip);
+        // dstRect.x = position.x;
+        //  dstRect.y = position.y;
+        //  SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0, 0, flip);
+        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 128, 133, system.renderer);
+        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 128, 133, currentRow, currentFrame, system.renderer);
     }
 
     void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
@@ -117,7 +124,7 @@ namespace diva
 
     TestGameObject::~TestGameObject()
     {
-        SDL_DestroyTexture(texture);
+       // SDL_DestroyTexture(texture);
         delete input;
     }
 
