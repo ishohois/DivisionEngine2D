@@ -9,22 +9,15 @@ namespace diva
     private:
         SDL_Rect *rect;
         /* data */
+        ~Input();
     public:
         Input(SDL_Rect*);
-        void horizontalMovement(int); // Takes a direction/speed
-        void verticalMovement(int); // Takes a direction/speed
-        
-        /*
-        Jump()
-
-
-
-        */
-
+       // void horizontalMovement(int); // Takes a direction/speed
+        void jump(int);
+        Uint8* keyState; //pekare till SDL_GetKeyboardState 
+        bool isKeyDown(SDL_Scancode key); //enum med alla tangenter
     };
-
-    // Input in = new Input(*rect);
-
-} // namespace diva
+    // Input in = new Input(*rect); 
+} 
 
 #endif

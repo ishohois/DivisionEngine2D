@@ -15,7 +15,7 @@ namespace diva
     srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h} 
     {
         texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block 2.png").c_str());
-        input = new Input(&dstRect);
+        
     }
 
     void TestGameObject::gameObjectUpdate(float dt) // Update i unity gameObject
@@ -118,7 +118,6 @@ namespace diva
     TestGameObject::~TestGameObject()
     {
         SDL_DestroyTexture(texture);
-        delete input;
     }
 
 };
