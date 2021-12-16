@@ -7,8 +7,6 @@
 namespace diva
 {
     class Label : public UIObject{
-        public: 
-        void setText(std::string input){};
-        std::string getText(){};
+       
     };
 } 

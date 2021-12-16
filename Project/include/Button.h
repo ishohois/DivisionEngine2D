@@ -6,11 +6,6 @@
 
 namespace diva{
     class Button : public UIObject{
-        public:
-        virtual void mouseDown(int x, int y){}; 
-        virtual void mouseUp(int x, int y){};
-        void setText(std::string input){};
-        std::string getText(){};
         SDL_Rect rectCollider;
     };
 }
