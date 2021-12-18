@@ -109,17 +109,13 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::handleCollisions()
     {
-
-        Contact c;
-
-        // for (auto b : colliders)
-        // {
-        //     if (CollisionHandler::collisionDetection(*player, *b, c))
-        //     {
-        //         player->OnCollision(b, c);
-        //         b->OnCollision(p, c);
-        //     }
-        // }
+        for (auto b : colliders)
+        {
+            for (auto g : gameObjects)
+            {
+                g->updateCollision(*b);
+            }
+        }
     }
 
     void GameManager::render()

@@ -27,6 +27,7 @@ namespace diva
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         void verticalMovement();
+        virtual void updateCollision(BoxCollider2D collision);
         bool checkCollision(const SDL_Rect &, const SDL_Rect &);
         BoxCollider2D &getCollider() { return collider; };
         virtual void keyDown(SDL_Event e);

@@ -19,8 +19,9 @@ namespace diva
             rbAcceleration.x = (rbForce.x + rbFriction.x) / rbMass;
             rbAcceleration.y = 0.5f * (rbForce.y + rbGravity * rbGravity) / rbMass;
 
-            rbVelocity = rbAcceleration * dt;
-            rbPosition = rbVelocity * dt;
+            rbVelocity = rbAcceleration;
+            rbPosition = rbVelocity;
+
         }
 
         inline void setMass(float mass) { rbMass = mass; }
