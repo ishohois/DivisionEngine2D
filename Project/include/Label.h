@@ -21,4 +21,7 @@ namespace diva
         std::string text;
         SDL_Texture* texture;
     };
-} 
+
+}
+
+#endif

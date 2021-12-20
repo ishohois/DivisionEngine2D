@@ -30,4 +30,8 @@ namespace diva{
 
 		isDown = false;
 	}
+
+    void Button::draw() const {
+        SDL_RenderCopy(system.renderer, texture, NULL, &getRect());
+    }
 }
