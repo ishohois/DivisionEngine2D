@@ -12,26 +12,20 @@ namespace diva
     {
     private:
       //  SDL_Texture *texture;
-        Input *input;
         SDL_RendererFlip flip = SDL_FLIP_NONE;
+        Vector2D position;
         RigidBody2D rb;
         BoxCollider2D collider;
-        SDL_Rect srcRect;
-        SDL_Rect dstRect;
-
+        const Uint8* currentKey;
     protected:
     public:
-        Vector2D position;
         TestGameObject(int x, int y, int w, int h);
         ~TestGameObject();
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         void verticalMovement();
         virtual void updateCollision(BoxCollider2D collision);
-        bool checkCollision(const SDL_Rect &, const SDL_Rect &);
         BoxCollider2D &getCollider() { return collider; };
-        virtual void keyDown(SDL_Event e);
-        virtual void keyUp(SDL_Event e);
     };
 
 };

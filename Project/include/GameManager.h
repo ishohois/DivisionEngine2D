@@ -17,7 +17,7 @@ namespace diva
         std::vector<BoxCollider2D*> colliders; // 
 
         bool quit = false;
-        void handleInput(SDL_Event &);
+        void handleEvents();
         void updateObjects(float dt);
         void handleCollisions();
         void render();
