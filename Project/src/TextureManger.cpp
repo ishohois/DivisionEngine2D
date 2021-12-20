@@ -1,9 +1,10 @@
 #include <TextureManager.h>
 #include <SDL2/SDL_image.h>
+#include "SystemResources.h"
 namespace diva
 {
     TextureManager *TextureManager::instance = nullptr; // inizilasing the instance.
- 
+
     bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *TRenderer)
     {
         SDL_Surface *TTempsurface = IMG_Load(fileName.c_str()); // Loading in the texture to a surface using the file name from the function call.
@@ -28,13 +29,35 @@ namespace diva
         TTexturemap[id] = TTexture;
         return true;
     }
-    // a fucntion to draw the texture on the screen. 
+
+    bool TextureManager::loadFont(std::string id,std::string fileName, std::string text)
+    {
+
+        TTF_Font *ourFont = TTF_OpenFont((resPath + fileName).c_str(), 32);
+     
+        
+        SDL_Surface * surfaceText = TTF_RenderText_Solid(ourFont,text.c_str(), {50,50,50});
+        SDL_Texture *T = SDL_CreateTextureFromSurface(system.renderer,surfaceText);
+
+        SDL_FreeSurface(surfaceText);
+        TTexturemap[id] = T;
+        return ourFont != nullptr;
+    }
+
+     void TextureManager::drawText(std::string id, int x, int y, int w, int h)
+    {
+
+        SDL_Rect rectangel {x,y,w,h};
+        SDL_RenderCopy(system.renderer,TTexturemap[id],NULL,&rectangel);
+    }
+
+    // a fucntion to draw the texture on the screen.
     void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *TRenderer, SDL_RendererFlip flip)
     {
-        // The srcRect copys the part of the image we want to from the texture to the screen. We use it to set the pos of the texture(sprite) 
-        // and we alos use it to define the width and height of the pcitre to display. 
-        SDL_Rect srcRect; 
-        // we use destRect to set the new pos of the srcRect. 
+        // The srcRect copys the part of the image we want to from the texture to the screen. We use it to set the pos of the texture(sprite)
+        // and we alos use it to define the width and height of the pcitre to display.
+        SDL_Rect srcRect;
+        // we use destRect to set the new pos of the srcRect.
         SDL_Rect destRect;
 
         srcRect.x = 0;
@@ -51,12 +74,11 @@ namespace diva
     void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer, SDL_RendererFlip flip)
     {
 
-      
         SDL_Rect srcRect;
         SDL_Rect destRect;
         // here we use the current frame to determent what part of the spritesheet to display.
         srcRect.x = width * currentFrame;
-        
+
         srcRect.y = height * (currentRow - 1);
         srcRect.w = destRect.w = width;
         srcRect.h = destRect.h = height;
@@ -65,5 +87,7 @@ namespace diva
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
     }
+
+   
 
 }

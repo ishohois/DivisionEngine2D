@@ -37,6 +37,7 @@ namespace diva
 
         if (moveLeft)
         {
+
             rb.applyForceX(-6.0f);
         }
 

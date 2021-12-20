@@ -1,6 +1,7 @@
 #ifndef TEXTUREMANGER_H
 #define TEXTUREMANGER_H
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <map>
 namespace diva
@@ -24,12 +25,15 @@ namespace diva
     {
     private:
         // Implementing a Singelton.
-        TextureManager() = default;
+        TextureManager()
+        {
+            TTF_Init(); // CleanUpMemory
+        };
         static TextureManager *instance; // A pointer to a static instance.
-        
+
     public:
         static TextureManager *getInstance()
-        {   // this is how we accses an instance.
+        { // this is how we accses an instance.
             // If there are no instance then we create one else we just retern the one that exist.
             if (!instance)
             {
@@ -48,8 +52,12 @@ namespace diva
         void drawFrame(std::string id, int x, int y, int widht, int height, int currentRow, int currentFrame,
                        SDL_Renderer *TRenderer, SDL_RendererFlip = SDL_FLIP_NONE); // dose the same as draw but adds a chceck
                                                                                    // what row we are on in the image spredsheet and also what frame we are in at the moment.
+        bool loadFont(std::string id,std::string fileName, std::string text);
+        void drawText(std::string id, int x, int y, int w, int h);
+
         // This map will contain all the textures in the game.
         std::map<std::string, SDL_Texture *> TTexturemap;
+        std::map<std::string, TTF_Font *> TFontmap;
     };
 
 }
