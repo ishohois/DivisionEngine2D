@@ -7,7 +7,18 @@
 namespace diva
 {
     class Label : public UIObject{
-       void setText(std::string input){}
-       std::string getText(){}
+    public:
+       static Label* getInstance(int x, int y, int w, int h, std::string txt);
+       void setText(std::string);
+       std::string getText();
+       void draw() const;
+       ~Label();
+       virtual void gameObjectUpdate(float dt);
+
+       protected:
+       Label(int x, int y, int w, int h, std::string txt);
+       private:
+        std::string text;
+        SDL_Texture* texture;
     };
 } 

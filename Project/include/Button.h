@@ -7,10 +7,25 @@
 namespace diva{
     class Button : public UIObject{
         public:
-        void setText(std::string input){};
-        std::string getText(){};
-        SDL_Rect rectCollider;
+        static Button* getInstance(int x, int y, int w, int h, std::string txt);
+        void mouseDown(const SDL_Event&);
+		void mouseUp(const SDL_Event&);
+		void draw() const;
+        virtual void perform(Button* source) {}
+		~Button();
+        virtual void gameObjectUpdate(float dt);
+
+        protected:
+		Button(int x, int y, int w, int h, std::string txt);
+
+        private:
+		std::string text;
+		SDL_Texture* texture;
+		bool isDown = false;
     };
 }
+
+//extern std::string resPath;
+//kanske inte behövs
 
 #endif

@@ -7,9 +7,11 @@
 namespace diva {
     class UIObject : public GameObject{
         public:
+        UIObject(){};
         virtual void setText(std::string input){};
         virtual std::string getText(){};
-        std::string textToDisplay;
+
+       virtual void gameObjectUpdate(float dt) = 0;
 
         void mouseDown(int x, int y){};
         void mouseUp(int x, int y){}; 
