@@ -7,8 +7,15 @@
 namespace diva {
     class UIObject : public GameObject{
         public:
-        void setText(std::string input){};
-        std::string getText(){};
+        virtual void setText(std::string input){};
+        virtual std::string getText(){};
+        std::string textToDisplay;
+
+        void mouseDown(int x, int y){};
+        void mouseUp(int x, int y){}; 
+        void draw(){};
+        //destruktor här eller i subklasserna?
+
     };
 }
 

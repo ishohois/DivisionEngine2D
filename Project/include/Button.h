@@ -6,6 +6,9 @@
 
 namespace diva{
     class Button : public UIObject{
+        public:
+        void setText(std::string input){};
+        std::string getText(){};
         SDL_Rect rectCollider;
     };
 }
