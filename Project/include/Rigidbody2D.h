@@ -21,7 +21,6 @@ namespace diva
 
             rbVelocity = rbAcceleration;
             rbPosition = rbVelocity;
-
         }
 
         inline void setMass(float mass) { rbMass = mass; }

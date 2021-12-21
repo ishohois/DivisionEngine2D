@@ -6,6 +6,7 @@
 #include "Contact.h"
 #include "TestGameObject.h"
 #include "TextureManager.h"
+#include "Input.h"
 
 namespace diva
 {
@@ -34,41 +35,9 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
         removed.push_back(gameObject);
     }
 
-    void GameManager::handleInput(SDL_Event &e)
+    void GameManager::handleEvents()
     {
-        while (SDL_PollEvent(&e))
-        {
-            switch (e.type)
-            {
-            case SDL_QUIT:
-                quit = true;
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                for (auto *g : gameObjects)
-                {
-                    g->mouseDown(e.button.x, e.button.y);
-                }
-                break;
-            case SDL_MOUSEBUTTONUP:
-                for (auto *g : gameObjects)
-                {
-                    g->mouseUp(e.button.x, e.button.y);
-                }
-                break;
-            case SDL_KEYDOWN:
-                for (auto *g : gameObjects)
-                {
-                    g->keyDown(e);
-                }
-                break;
-            case SDL_KEYUP:
-                for (auto *g : gameObjects)
-                {
-                    g->keyUp(e);
-                }
-                break;
-            }
-        }
+        InputHandler::getInstance()->handleInput();
     }
 
     void GameManager::updateObjects(float dt)
@@ -141,12 +110,11 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
 
     void GameManager::runGameLoop()
     {
-        while (!quit)
+        while (!InputHandler::getInstance()->quit())
         {
-            SDL_Event event;
             Uint32 nextTick = time->tickInterval + time->getTicks();
             // handle input
-            handleInput(event);
+            handleEvents();
             // update gameobject
             updateObjects(time->deltaTime(nextTick));
             handleCollisions();

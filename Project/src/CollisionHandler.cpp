@@ -15,7 +15,7 @@ namespace diva
         float distY = b.getCenterPoint().y - ct.getCenterPoints().y; // gives distance between two center point on y axis
         // if distX is negative intersection is on left side of b
         // if distY is negative intersection is on bottom of b
-        if (fabs(distX) > fabs(distY)) // if centerpoint hasn't changed it will only resolve on the side where it is changing
+        if (fabs(distX) > fabs(distY)) // absolute values used for distance comparison if centerpoint hasn't changed it will only resolve on the side where it is changing
         {
             return Vector2D(distX > 0 ? ct.intersectRect.w : -ct.intersectRect.w, 0); // this resolves the intersection on x-axis
         }

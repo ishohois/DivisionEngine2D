@@ -1,33 +1,21 @@
 #include "TestGameObject.h"
 #include "SDL2/SDL.h"
-#include <SDL2/SDL_image.h>
 #include <SystemResources.h>
 #include "TextureManager.h"
 #include "CollisionHandler.h"
 #include "Contact.h"
+#include "Input.h"
 
 namespace diva
 {
-    enum States
-    {
-        walkState,
-        jumpState,
-        standState
-    };
-
     bool grounded = false;
-    bool moveRight = false;
-    bool moveLeft = false;
-    bool jump = false;
+    bool jumping = false;
     float jumpTime = 0.5f;
     int currentRow = 1, currentFrame = 1;
 
-    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player"),
-                                                                 srcRect{0, 0, 256, 256}, dstRect{(int)position.x, (int)position.y, w, h}
+    TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player")
     {
-        //texture = IMG_LoadTexture(system.renderer, (resPath + "images/Block 2.png").c_str());
         TextureManager::getInstance()->load((resPath + "images/Block 2.png").c_str(), "test", system.renderer);
-        input = new Input(&dstRect);
         rb.setGravity(3.0f);
     }
 
@@ -35,28 +23,42 @@ namespace diva
     {
         rb.resetForce();
 
-        if (moveLeft)
+        if (InputHandler::getInstance()->getKeyDown(KEYS::A))
         {
 
             rb.applyForceX(-6.0f);
         }
 
-        if (moveRight)
+        if (InputHandler::getInstance()->getKeyDown(KEYS::D))
         {
             rb.applyForceX(6.0f);
         }
 
-        if (jump)
+        if (InputHandler::getInstance()->getKeyDown(KEYS::SPACE))
         {
-            rb.applyForceY(-15.0f);
+            jumping = true;
+            rb.applyForceY(-30.0f);
+        }
+        if (jumping)
+        {
             jumpTime -= (dt / 100);
-
             if (jumpTime <= 0)
             {
-                grounded = false;
                 jumpTime = 0.5f;
-                jump = false;
+                jumping = false;
             }
+        }
+
+        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB)){
+            std::cout << "read left mouse click" << std::endl;
+        }
+
+          if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::MMB)){
+            std::cout << "read middle mouse click" << std::endl;
+        }
+
+        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::RMB)){
+            std::cout << "read right mouse click" << std::endl;
         }
 
         rb.updatePhysics(dt);
@@ -86,99 +88,14 @@ namespace diva
         }
     }
 
-    bool TestGameObject::checkCollision(const SDL_Rect &a, const SDL_Rect &b)
-    {
-
-        // sides of own collider
-        int leftA, leftB;
-        int rightA, rightB;
-        int topA, topB;
-        int bottomA, bottomB;
-
-        // calculate the sides of rect A
-        leftA = a.x;
-        rightA = a.x + a.w;
-        topA = a.y;
-        bottomA = a.y + a.h;
-
-        //calculate the sides of rect B
-        leftB = b.x;
-        rightB = b.x + b.w;
-        topB = b.y;
-        bottomB = b.y + b.h;
-
-        // if any of the sides from A are outside of B
-        if (bottomA <= topB)
-        {
-            return false;
-        }
-        if (topA >= bottomB)
-        {
-            return false;
-        }
-        if (rightA <= leftB)
-        {
-            return false;
-        }
-        if (leftA >= rightB)
-        {
-            return false;
-        }
-
-        std::cout << "Kolliderar" << std::endl;
-        return true;
-    }
-
     void TestGameObject::draw() const
     {
-
-        // dstRect.x = position.x;
-        //  dstRect.y = position.y;
-        //  SDL_RenderCopyEx(system.renderer, texture, &srcRect, &dstRect, 0, 0, flip);
         TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 50, 50, system.renderer);
         TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 50, 50, currentRow, currentFrame, system.renderer);
     }
 
-    void TestGameObject::keyDown(SDL_Event e) // VIll ju kallas i update.
-    {
-        switch (e.key.keysym.sym)
-        {
-        case SDLK_DOWN:
-            break;
-        case SDLK_UP:
-            break;
-        case SDLK_LEFT:
-            moveLeft = true;
-            break;
-        case SDLK_RIGHT:
-            moveRight = true;
-            break;
-        case SDLK_SPACE:
-            jump = true;
-        }
-    }
-
-    void TestGameObject::keyUp(SDL_Event e)
-    {
-        switch (e.key.keysym.sym)
-        {
-        case SDLK_DOWN:
-            break;
-        case SDLK_UP:
-            break;
-        case SDLK_LEFT:
-            moveLeft = false;
-            break;
-        case SDLK_RIGHT:
-            moveRight = false;
-            break;
-        }
-    }
-
     TestGameObject::~TestGameObject()
     {
-        // SDL_DestroyTexture(texture);
-        delete input;
     }
 
 };
