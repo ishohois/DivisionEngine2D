@@ -43,14 +43,14 @@ namespace diva
         return ourFont != nullptr;
     }
 
-    void TextureManager::setText(const std::string &newText)
+    void TextureManager::setText(const std::string &newText, std::string id)
     {
 
         surfaceText = TTF_RenderText_Solid(ourFont, newText.c_str(), {50, 50, 50});
         T = SDL_CreateTextureFromSurface(system.renderer, surfaceText);
 
         SDL_FreeSurface(surfaceText);
-        TTexturemap[ids] = T;
+        TTexturemap[id] = T;
     }
 
     void TextureManager::drawText(std::string id, int x, int y, int w, int h)

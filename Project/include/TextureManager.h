@@ -58,7 +58,7 @@ namespace diva
                                                                                    // what row we are on in the image spredsheet and also what frame we are in at the moment.
         bool loadFont(std::string id,std::string fileName, std::string text);
         void drawText(std::string id, int x, int y, int w, int h);
-        void setText(const std::string& newText);
+        void setText(const std::string& newText,std::string id);
         // This map will contain all the textures in the game.
         std::map<std::string, SDL_Texture *> TTexturemap;
         std::map<std::string, TTF_Font *> TFontmap;
