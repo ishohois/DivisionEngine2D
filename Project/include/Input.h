@@ -15,14 +15,25 @@ namespace diva
         A = SDL_SCANCODE_A,
         S = SDL_SCANCODE_S,
         D = SDL_SCANCODE_D,
+        E = SDL_SCANCODE_E,
+        Q = SDL_SCANCODE_Q,
+        RETURN = SDL_SCANCODE_RETURN,
         SPACE = SDL_SCANCODE_SPACE,
+        BACKSPACE = SDL_SCANCODE_BACKSPACE,
         FIRE1 = SDL_SCANCODE_M,
-        FIRE2 = SDL_SCANCODE_N
+        FIRE2 = SDL_SCANCODE_N,
+    };
+
+    enum MOUSEBUTTON{
+        LMB = SDL_BUTTON_LMASK,
+        MMB = SDL_BUTTON_MMASK,
+        RMB = SDL_BUTTON_RMASK,
     };
 
      struct MousePos
         {
             int x, y;
+            Uint32 mouseButton; 
         };
 
     class Input
@@ -46,6 +57,7 @@ namespace diva
         bool getKeyDown(KEYS key);
         void keyDown();
         void keyUp();
+        bool getMouseButton(MOUSEBUTTON button);
         void mouseUp(int x, int y);
         void mouseDown(int x, int y);
         bool quit();

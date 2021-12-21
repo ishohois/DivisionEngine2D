@@ -48,6 +48,18 @@ namespace diva
             }
         }
 
+        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB)){
+            std::cout << "read left mouse click" << std::endl;
+        }
+
+          if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::MMB)){
+            std::cout << "read middle mouse click" << std::endl;
+        }
+
+        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::RMB)){
+            std::cout << "read right mouse click" << std::endl;
+        }
+
         rb.updatePhysics(dt);
         position.y += rb.getRbPosition().y;
 
