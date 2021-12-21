@@ -61,7 +61,6 @@ namespace diva
         currentKey = SDL_GetKeyboardState(nullptr);
     }
 
-
     bool Input::getMouseButton(MOUSEBUTTON button){
         mousePos.mouseButton = SDL_GetMouseState(&mousePos.x, &mousePos.y);
         if((mousePos.mouseButton & button) != 0){

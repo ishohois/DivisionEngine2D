@@ -32,14 +32,5 @@ int main(int argc, char *argv[])
 
     g->runGameLoop();
 
-    // till tg lägger jag till colliders som finns i världen
-    // skapa i tgs move funktion skapar jag villkor för collision
-    // testa för vänster kollision
-    // vänd hastighetsvektorn
-    // testa för höger kollision
-    // vänd hastighetsvektorn
-    // testa för topp kollision
-    // testa för botten kollision
-
     return 0;
 }

@@ -20,21 +20,22 @@ namespace diva
         RETURN = SDL_SCANCODE_RETURN,
         SPACE = SDL_SCANCODE_SPACE,
         BACKSPACE = SDL_SCANCODE_BACKSPACE,
-        FIRE1 = SDL_SCANCODE_M,
-        FIRE2 = SDL_SCANCODE_N,
+        M = SDL_SCANCODE_M,
+        N = SDL_SCANCODE_N,
     };
 
-    enum MOUSEBUTTON{
+    enum MOUSEBUTTON
+    {
         LMB = SDL_BUTTON_LMASK,
         MMB = SDL_BUTTON_MMASK,
         RMB = SDL_BUTTON_RMASK,
     };
 
-     struct MousePos
-        {
-            int x, y;
-            Uint32 mouseButton; 
-        };
+    struct MousePos
+    {
+        int x, y;
+        Uint32 mouseButton;
+    };
 
     class Input
     {
@@ -43,6 +44,10 @@ namespace diva
         static Input *instance;
         bool quitLoop = false;
         Input();
+        Input(const Input &other) = delete;
+        const Input &operator=(const Input &other) = delete;
+        void keyDown();
+        void keyUp();
 
     public:
         static Input *getInstance()
@@ -55,14 +60,12 @@ namespace diva
         }
         void handleInput();
         bool getKeyDown(KEYS key);
-        void keyDown();
-        void keyUp();
         bool getMouseButton(MOUSEBUTTON button);
         void mouseUp(int x, int y);
         void mouseDown(int x, int y);
         bool quit();
 
-        MousePos mousePos;       
+        MousePos mousePos;
     };
 
     typedef Input InputHandler;
