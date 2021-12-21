@@ -30,25 +30,34 @@ namespace diva
         return true;
     }
 
-    bool TextureManager::loadFont(std::string id,std::string fileName, std::string text)
+    bool TextureManager::loadFont(std::string id, std::string fileName, std::string text)
     {
+        ids = id;
+        ourFont = TTF_OpenFont((resPath + fileName).c_str(), 32);
 
-        TTF_Font *ourFont = TTF_OpenFont((resPath + fileName).c_str(), 32);
-     
-        
-        SDL_Surface * surfaceText = TTF_RenderText_Solid(ourFont,text.c_str(), {50,50,50});
-        SDL_Texture *T = SDL_CreateTextureFromSurface(system.renderer,surfaceText);
+        surfaceText = TTF_RenderText_Solid(ourFont, text.c_str(), {50, 50, 50});
+        T = SDL_CreateTextureFromSurface(system.renderer, surfaceText);
 
         SDL_FreeSurface(surfaceText);
-        TTexturemap[id] = T;
+        TTexturemap[ids] = T;
         return ourFont != nullptr;
     }
 
-     void TextureManager::drawText(std::string id, int x, int y, int w, int h)
+    void TextureManager::setText(const std::string &newText)
     {
 
-        SDL_Rect rectangel {x,y,w,h};
-        SDL_RenderCopy(system.renderer,TTexturemap[id],NULL,&rectangel);
+        surfaceText = TTF_RenderText_Solid(ourFont, newText.c_str(), {50, 50, 50});
+        T = SDL_CreateTextureFromSurface(system.renderer, surfaceText);
+
+        SDL_FreeSurface(surfaceText);
+        TTexturemap[ids] = T;
+    }
+
+    void TextureManager::drawText(std::string id, int x, int y, int w, int h)
+    {
+
+        SDL_Rect rectangel{x, y, w, h};
+        SDL_RenderCopy(system.renderer, TTexturemap[id], NULL, &rectangel);
     }
 
     // a fucntion to draw the texture on the screen.
@@ -87,7 +96,5 @@ namespace diva
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
     }
-
-   
 
 }
