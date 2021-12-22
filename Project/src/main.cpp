@@ -5,6 +5,7 @@
 #include "CollisionRectangle.h"
 #include "Vector2D.h"
 #include "BackGround.h"
+#include "Enemy.h"
 
 using namespace diva;
 
@@ -22,15 +23,15 @@ int main(int argc, char *argv[])
     CollisionRectangle *cr3 = new CollisionRectangle(vec, 200, 50);
 
     BackGround *b1 = new BackGround();
-
-  
-
+    
+    Enemy *e = new Enemy(100,100,500,500);
 
     g->add(b1);
     g->add(tg);
     g->add(cr1);
     g->add(cr2);
-    g->add(cr3);    
+    g->add(cr3);  
+    g->add(e);  
 
     g->addCollider(tg->getCollider());
     g->addCollider(cr1->getCollider());
