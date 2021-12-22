@@ -90,8 +90,8 @@ namespace diva
 
     void TestGameObject::draw() const
     {
-        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 50, 50, system.renderer);
-        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 50, 50, currentRow, currentFrame, system.renderer);
+        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 50, 50, system.renderer,0);
+        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 50, 50, currentRow, currentFrame, system.renderer,0);
     }
 
     TestGameObject::~TestGameObject()

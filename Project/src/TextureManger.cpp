@@ -61,7 +61,7 @@ namespace diva
     }
 
     // a fucntion to draw the texture on the screen.
-    void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *TRenderer, SDL_RendererFlip flip)
+    void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *TRenderer,double angel ,SDL_RendererFlip flip)
     {
         // The srcRect copys the part of the image we want to from the texture to the screen. We use it to set the pos of the texture(sprite)
         // and we alos use it to define the width and height of the pcitre to display.
@@ -76,11 +76,11 @@ namespace diva
         destRect.x = x;
         destRect.y = y;
 
-        SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
+        SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, angel, 0, flip);
     }
 
     // In this function we us the currentFrame andcurrentRow Variables to get the appropriate frame och the animation in the source rectangle.
-    void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer, SDL_RendererFlip flip)
+    void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer, double angel ,SDL_RendererFlip flip)
     {
 
         SDL_Rect srcRect;
@@ -94,7 +94,7 @@ namespace diva
         destRect.x = x;
         destRect.y = y;
 
-        SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, 0, 0, flip);
+        SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, angel, 0, flip);
     }
 
 }
