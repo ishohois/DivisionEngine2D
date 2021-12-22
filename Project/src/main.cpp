@@ -5,7 +5,7 @@
 #include "CollisionRectangle.h"
 #include "Vector2D.h"
 #include "BackGround.h"
-#include "Enemy.h"
+
 using namespace diva;
 
 GameManager *g = nullptr;
@@ -23,11 +23,10 @@ int main(int argc, char *argv[])
 
     BackGround *b1 = new BackGround();
 
-    Enemy *E = new Enemy();
+  
 
 
     g->add(b1);
-    g->add(E);
     g->add(tg);
     g->add(cr1);
     g->add(cr2);

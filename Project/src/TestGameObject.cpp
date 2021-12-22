@@ -12,6 +12,7 @@ namespace diva
     bool jumping = false;
     float jumpTime = 0.5f;
     int currentRow = 1, currentFrame = 1;
+    float degrees = 0;
 
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player")
     {
@@ -49,15 +50,26 @@ namespace diva
             }
         }
 
-        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB)){
-            std::cout << "read left mouse click" << std::endl;
+        float distX = collider.getCenterPoint().x - InputHandler::getInstance()->mousePos.x;
+        float distY = InputHandler::getInstance()->mousePos.y - collider.getCenterPoint().y;
+        float radians = (atan2(distY, distX));
+        degrees = -radians * (180 / 3.14);
+
+        if (InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB))
+        {
+            std::cout << "distX: " << distX << std::endl;
+            std::cout << "distY: " << distY << std::endl;
+            std::cout << "radians: " << radians << std::endl;
+            std::cout << "degrees: " << degrees << std::endl;
         }
 
-          if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::MMB)){
+        if (InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::MMB))
+        {
             std::cout << "read middle mouse click" << std::endl;
         }
 
-        if(InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::RMB)){
+        if (InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::RMB))
+        {
             std::cout << "read right mouse click" << std::endl;
         }
 
@@ -90,8 +102,8 @@ namespace diva
 
     void TestGameObject::draw() const
     {
-        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 50, 50, system.renderer,0);
-        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 50, 50, currentRow, currentFrame, system.renderer,0);
+        TextureManager::getInstance()->draw("test", (int)position.x, (int)position.y, 50, 50, system.renderer, degrees);
+        TextureManager::getInstance()->drawFrame("test", (int)position.x, (int)position.y, 50, 50, currentRow, currentFrame, system.renderer, degrees);
     }
 
     TestGameObject::~TestGameObject()
