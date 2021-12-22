@@ -17,7 +17,7 @@ namespace diva
         void updatePhysics(float dt)
         {
             rbAcceleration.x = (rbForce.x + rbFriction.x) / rbMass;
-            rbAcceleration.y = 0.5f * (rbForce.y + rbGravity * rbGravity) / rbMass;
+            rbAcceleration.y = (rbForce.y + rbGravity ) / rbMass;
 
             rbVelocity = rbAcceleration;
             rbPosition = rbVelocity;

@@ -1,3 +1,4 @@
+/*
 #include "TestGameObject.h"
 #include "SDL2/SDL.h"
 #include <SystemResources.h>
@@ -111,3 +112,4 @@ namespace diva
     }
 
 };
+*/
