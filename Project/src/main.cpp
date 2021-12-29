@@ -1,4 +1,4 @@
-#include "GameManager.h"
+#include "GameManager.h" 
 #include "SystemResources.h"
 #include "TestGameObject.h"
 #include "Timer.h"
@@ -11,6 +11,9 @@ using namespace diva;
 
 GameManager *g = nullptr;
 
+/*räkna upp vilka filer som tillför spelet
+- TestGameObject är vår bla bla
+- Background är det där fina där bak*/
 int main(int argc, char *argv[])
 {
     Vector2D vec{200.0f, 500.0f};

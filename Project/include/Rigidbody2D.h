@@ -7,7 +7,7 @@
 
 namespace diva
 {
-
+    /*vad tillför klassen vårt spel?*/
     class RigidBody2D
     {
 

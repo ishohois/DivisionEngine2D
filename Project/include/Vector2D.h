@@ -6,7 +6,7 @@
 
 namespace diva
 {
-
+    /**/
     struct Vector2D
     {
         float x, y;
