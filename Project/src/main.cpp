@@ -6,6 +6,7 @@
 #include "Vector2D.h"
 #include "BackGround.h"
 #include "Player.h"
+#include "Bullet.h"
 using namespace diva;
 
 GameManager *g = nullptr;
@@ -24,10 +25,10 @@ int main(int argc, char *argv[])
     CollisionRectangle *cr3 = new CollisionRectangle(vec, 200, 50);
 
     BackGround *b1 = new BackGround();
+    Bullet *bull = new Bullet(10,0,50,50);
+    
 
-  
-
-
+    g->add(bull);
     g->add(b1);
     //g->add(tg);
     g->add(p);

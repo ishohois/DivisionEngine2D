@@ -4,7 +4,8 @@
 #include "CollisionHandler.h"
 #include "Contact.h"
 #include "Input.h"
-
+#include "GameManager.h"
+#include "Bullet.h"
 namespace diva
 {
 
@@ -49,6 +50,10 @@ namespace diva
         if (InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB))
         {
             std::cout << "FIRE!!" << std::endl;
+            //Bullet *bull =  new Bullet(position.x,position.y,10,10); // Hur lägger vi till den i GameManager?
+            
+
+
         }
 
         // När spelaren sjukter så ska den instanziera en annan klass som är av typ "Skott" eller liknande
