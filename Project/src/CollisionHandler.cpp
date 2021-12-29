@@ -7,6 +7,11 @@ namespace diva
         return SDL_IntersectRect(&b1.getColliderRect(), &b2.getColliderRect(), &ct.intersectRect);
     }
 
+    bool CollisionHandler::collisionDetection(const BoxCollider2D &b1, const BoxCollider2D &b2)
+    {
+        return SDL_HasIntersection(&b1.getColliderRect(), &b2.getColliderRect());
+    }
+
     Vector2D CollisionHandler::collisionResolution(const BoxCollider2D &b, Contact &ct)
     {
         Vector2D v;
