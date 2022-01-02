@@ -28,10 +28,14 @@ namespace diva
                 keyUp();
                 break;
             case SDL_MOUSEBUTTONDOWN:
-                mouseDown(e.button.x, e.button.y);
+                mouseDown();
+                isMouseDown = true;
+                //mousePos.x = e.button.x; mousePos.y = e.button.y;
                 break;
             case SDL_MOUSEBUTTONUP:
-                mouseUp(e.button.x, e.button.y);
+                mouseUp();
+                isMouseDown = false;
+                //mousePos.x = e.button.x; mousePos.y = e.button.y;
                 break;
             }
         }
@@ -69,16 +73,16 @@ namespace diva
         return false;
     }
 
-    void Input::mouseDown(int x, int y)
+    bool Input::mouseDown()
     {
-        mousePos.x = x;
-        mousePos.y = y;
+        //mousePos.mouseButton = SDL_GetMouseState(nullptr, nullptr);
+        return isMouseDown;
     }
 
-    void Input::mouseUp(int x, int y)
+    bool Input::mouseUp()
     {
-        mousePos.x = x;
-        mousePos.y = y;
+        //mousePos.mouseButton = SDL_GetMouseState(nullptr, nullptr);
+        return isMouseDown;
     }
 
 };

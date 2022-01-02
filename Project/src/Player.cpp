@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "GameManager.h"
 #include "Bullet.h"
+
 namespace diva
 {
 
@@ -17,10 +18,12 @@ namespace diva
         // laddar in spriten som ska användas samt sätter ett ID så att man kan hämta texuren från en map. sätter även en renderare.
         TextureManager::getInstance()->load((resPath + "images/PlayerSprite/RBS.png").c_str(), "Player", system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
+        shootCounter = shootTime;
     }
 
     void Player::gameObjectUpdate(float dt)
     {
+
         rb.resetForce();
 
         //[Uträkning för vilken grad som spriten ska titta på]
@@ -29,7 +32,6 @@ namespace diva
         // Kolla imputs för att röra spelaren.
         if (InputHandler::getInstance()->getKeyDown(KEYS::A))
         {
-
             rb.applyForceX(-6.0f);
         }
 
@@ -47,13 +49,10 @@ namespace diva
             rb.applyForceY(6.0f);
         }
 
+        shootCounter -= (dt / 100);
         if (InputHandler::getInstance()->getMouseButton(MOUSEBUTTON::LMB))
         {
-            std::cout << "FIRE!!" << std::endl;
-            //Bullet *bull =  new Bullet(position.x,position.y,10,10); // Hur lägger vi till den i GameManager?
-            
-
-
+            shoot(shootCounter);
         }
 
         // När spelaren sjukter så ska den instanziera en annan klass som är av typ "Skott" eller liknande
@@ -71,7 +70,6 @@ namespace diva
         {
             isWalking = false;
         }
-
         collider.updateCollider();
     }
 
@@ -82,10 +80,10 @@ namespace diva
     void Player::draw() const
     {
         // OM player Velocity == 0
-        
+
         TextureManager::getInstance()->draw("Player", (int)position.x, (int)position.y, 57, 43, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
-        if(isWalking)
-        TextureManager::getInstance()->drawFrame("Player", (int)position.x, (int)position.y, 57, 43, cr, cf, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
+        if (isWalking)
+            TextureManager::getInstance()->drawFrame("Player", (int)position.x, (int)position.y, 57, 43, cr, cf, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
     }
 
     void Player::getAngel()
@@ -94,6 +92,23 @@ namespace diva
         float distY = InputHandler::getInstance()->mousePos.y - collider.getCenterPoint().y;
         float radians = (atan2(distY, distX));
         degrees = -radians * (180 / 3.14);
+    }
+
+    void Player::shoot(float &sTime)
+    {
+        Bullet *bull = nullptr;
+
+        if (sTime >= 0)
+        {
+            return;
+        }
+
+        Vector2D v{(float)InputHandler::getInstance()->mousePos.x, (float)InputHandler::getInstance()->mousePos.y};
+        Vector2D dir = v - position;
+        bull = new Bullet(position, v); // Hur lägger vi till den i GameManager?
+        GameManager::getInstance()->addCollider(bull->getCollider());
+        sTime = shootTime;
+        bull = nullptr;
     }
 
     Player::~Player()

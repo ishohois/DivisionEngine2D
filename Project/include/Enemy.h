@@ -1,12 +1,13 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ENEMY_H
+#define ENEMY_H
 
 #include "GameObject.h"
 #include "Rigidbody2D.h"
+
 namespace diva
 {
 
-    class Player : public GameObject
+    class Enemy : public GameObject
     {
     private:
         /* data */
@@ -14,22 +15,18 @@ namespace diva
         Vector2D position;
         BoxCollider2D collider;
         RigidBody2D rb;
-        void getAngel();
         int cr = 1, cf = 1;
         float degrees = 0;
         bool isWalking = false;
-        float shootTime = 0.1f;
-        float shootCounter;
+        bool isDead = false;
 
     public:
-        Player(int x, int y, int w, int h);
-        ~Player();
+        Enemy(int x, int y, int w, int h);
+        ~Enemy();
 
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         virtual void updateCollision(BoxCollider2D collision);
-        void shoot(float &sTime);
-
         BoxCollider2D &getCollider() { return collider; };
     };
 

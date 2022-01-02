@@ -10,18 +10,7 @@
 
 namespace diva
 {
-    //TextureManager *tMan = TextureManager::getInstance();
-    /* 
-RunGameloop
-Kontrollera input
-Kolla gameObject
-    kalla på deras tick/update funktion.
-        Olika beteenande t.ex rörsig.
-Rendera gameObject
-Kontrollera tiden och evntuellet fördröja den. FPS.
-*/
-
-    //#define FPS 60;
+    GameManager *GameManager::instance = nullptr;
     Timer *Timer::instance = nullptr;
     Timer *time = Timer::getInstance();
 
@@ -66,6 +55,7 @@ Kontrollera tiden och evntuellet fördröja den. FPS.
                     it++;
                 }
             }
+            g->~GameObject();
         }
 
         removed.clear();

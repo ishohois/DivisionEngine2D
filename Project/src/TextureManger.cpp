@@ -7,6 +7,10 @@ namespace diva
 
     bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *TRenderer)
     {
+        if (TTexturemap[id])
+        {
+            return true;
+        }
         SDL_Surface *TTempsurface = IMG_Load(fileName.c_str()); // Loading in the texture to a surface using the file name from the function call.
         // checking if we could load in the file.
         if (TTempsurface == 0)
@@ -15,6 +19,7 @@ namespace diva
             return false;
         }
         // creates the textrure from the surface and puts it in a render context.
+
         SDL_Texture *TTexture = SDL_CreateTextureFromSurface(TRenderer, TTempsurface);
         // freeing up the surface cause it's no loger needed.
         SDL_FreeSurface(TTempsurface);
@@ -55,7 +60,6 @@ namespace diva
 
     void TextureManager::drawText(std::string id, int x, int y, int w, int h)
     {
-
         SDL_Rect rectangel{x, y, w, h};
         SDL_RenderCopy(system.renderer, TTexturemap[id], NULL, &rectangel);
     }
@@ -95,8 +99,8 @@ namespace diva
     }
 
     // In this function we us the currentFrame andcurrentRow Variables to get the appropriate frame och the animation in the source rectangle.
-    void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer, 
-    double angel, Spriteflip spriteflip)
+    void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *TRenderer,
+                                   double angel, Spriteflip spriteflip)
     {
         SDL_RendererFlip flip = SDL_FLIP_NONE;
 

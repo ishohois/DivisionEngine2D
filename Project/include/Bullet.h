@@ -10,25 +10,24 @@ namespace diva
     class Bullet : public GameObject
     {
     private:
-    BoxCollider2D collider;
-    Vector2D pos;
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
-    RigidBody2D rb;
-    int currentRow = 1, currentFrame = 1;
-    int moveCheckx = 0, moceChecky = 0;
-
+        Vector2D pos;
+        Vector2D dir;
+        BoxCollider2D collider;
+        SDL_RendererFlip flip = SDL_FLIP_NONE;
+        RigidBody2D rb;
+        int currentRow = 1, currentFrame = 1;
+        bool fired = false;
 
     public:
-        Bullet(int x, int y, int w, int h);
+        Bullet(Vector2D pos, Vector2D target);
 
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         virtual void updateCollision(BoxCollider2D collision);
+        BoxCollider2D &getCollider() { return collider; }
+        bool destroy() const;
 
-        ~Bullet(){
-            delete [] this;
-            
-        }
+        ~Bullet();
     };
 
 }

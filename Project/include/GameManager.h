@@ -11,10 +11,12 @@ namespace diva
     class GameManager
     {
     private:
-        std::vector<GameObject *> gameObjects; //
-        std::vector<GameObject *> added;       //
-        std::vector<GameObject *> removed;     //
-        std::vector<BoxCollider2D*> colliders; // 
+        GameManager(){};
+        static GameManager *instance;
+        std::vector<GameObject *> gameObjects;  //
+        std::vector<GameObject *> added;        //
+        std::vector<GameObject *> removed;      //
+        std::vector<BoxCollider2D *> colliders; //
 
         bool quit = false;
         void handleEvents();
@@ -25,11 +27,20 @@ namespace diva
 
     protected:
     public:
+        static GameManager *getInstance()
+        {
+            if (!instance)
+            {
+                instance = new GameManager();
+            }
+            return instance;
+        }
         void add(GameObject *gameObject);
         void remove(GameObject *gameObject);
         void runGameLoop();
-        void addCollider(BoxCollider2D& b);
+        void addCollider(BoxCollider2D &b);
     };
+
 };
 
 #endif
