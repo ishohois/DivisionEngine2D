@@ -17,12 +17,17 @@ namespace diva
     TestGameObject::TestGameObject(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player")
     {
         TextureManager::getInstance()->load((resPath + "images/Block 2.png").c_str(), "test", system.renderer);
-        rb.setGravity(3.0f);
+        rb.setGravity(0);
     }
 
     void TestGameObject::gameObjectUpdate(float dt) // Update i unity gameObject
     {
         rb.resetForce();
+
+        if (InputHandler::getInstance()->getKeyDown(KEYS::W))
+        {
+            rb.applyForceY(-6.0f);
+        }
 
         if (InputHandler::getInstance()->getKeyDown(KEYS::A))
         {
@@ -30,6 +35,11 @@ namespace diva
             rb.applyForceX(-6.0f);
         }
 
+        if (InputHandler::getInstance()->getKeyDown(KEYS::S))
+        {
+            rb.applyForceY(6.0f);
+        }
+        
         if (InputHandler::getInstance()->getKeyDown(KEYS::D))
         {
             rb.applyForceX(6.0f);
@@ -96,6 +106,12 @@ namespace diva
             else
             {
                 grounded = false;
+            }
+
+            if (collision.getObjectTag() == "Wall")
+            {
+                std::cout << CollisionHandler::collisionResolution(collider, c) << std::endl;
+                position += CollisionHandler::collisionResolution(collider, c) * 50;
             }
         }
     }

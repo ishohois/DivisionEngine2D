@@ -6,7 +6,6 @@
 
 namespace diva
 {
-
     CollisionRectangle::CollisionRectangle(Vector2D& objectpos, int w, int h) : GameObject(), 
     collider{objectpos, w, h, "Collision"},
     srcRect{(int)objectpos.x, (int)objectpos.y, w, h}
