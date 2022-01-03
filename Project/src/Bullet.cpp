@@ -20,7 +20,7 @@ namespace diva
     void Bullet::draw() const
     {
         if (!destroy())
-            TextureManager::getInstance()->draw("Bullet", pos.x, pos.y, 64, 64, system.renderer, 0, Spriteflip::FLIPNONE);
+            TextureManager::getInstance()->draw("Bullet", pos.x, pos.y, 10, 10, system.renderer, 0, Spriteflip::FLIPNONE);
     }
 
     void Bullet::gameObjectUpdate(float dt)
