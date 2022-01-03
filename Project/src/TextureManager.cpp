@@ -50,7 +50,7 @@ namespace diva
 
     void TextureManager::setText(const std::string &newText, std::string id)
     {
-
+        SDL_DestroyTexture(TTexturemap[id]);
         surfaceText = TTF_RenderText_Solid(ourFont, newText.c_str(), {50, 50, 50});
         T = SDL_CreateTextureFromSurface(system.renderer, surfaceText);
 

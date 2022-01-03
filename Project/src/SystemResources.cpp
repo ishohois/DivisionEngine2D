@@ -2,6 +2,7 @@
 
 namespace diva
 {
+
     SystemResources::SystemResources()
     {
         SDL_Init(SDL_INIT_EVERYTHING);

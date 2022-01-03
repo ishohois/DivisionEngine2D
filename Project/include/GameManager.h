@@ -17,6 +17,8 @@ namespace diva
         std::vector<GameObject *> added;        //
         std::vector<GameObject *> removed;      //
         std::vector<BoxCollider2D *> colliders; //
+        std::vector<BoxCollider2D *> addedC;
+        std::vector<BoxCollider2D *> removedC;
 
         bool quit = false;
         void handleEvents();
@@ -37,8 +39,9 @@ namespace diva
         }
         void add(GameObject *gameObject);
         void remove(GameObject *gameObject);
-        void runGameLoop();
         void addCollider(BoxCollider2D &b);
+        void removeCollider(BoxCollider2D &b);
+        void runGameLoop();
     };
 
 };

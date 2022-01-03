@@ -15,8 +15,9 @@ namespace diva
  */
     Player::Player(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Player")
     {
+        setTag("Player");
         // laddar in spriten som ska användas samt sätter ett ID så att man kan hämta texuren från en map. sätter även en renderare.
-        TextureManager::getInstance()->load((resPath + "images/PlayerSprite/RBS.png").c_str(), "Player", system.renderer);
+        TextureManager::getInstance()->load((resPath + "images/PlayerSprite/RBS.png").c_str(), tag, system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
         shootCounter = shootTime;
     }
@@ -27,7 +28,7 @@ namespace diva
         rb.resetForce();
 
         //[Uträkning för vilken grad som spriten ska titta på]
-        getAngel();
+        getAngle();
 
         // Kolla imputs för att röra spelaren.
         if (InputHandler::getInstance()->getKeyDown(KEYS::A))
@@ -58,10 +59,10 @@ namespace diva
         // När spelaren sjukter så ska den instanziera en annan klass som är av typ "Skott" eller liknande
         cf = int(((SDL_GetTicks() / 100) % 2));
 
+
         rb.updatePhysics(dt);
-        position.x += rb.getRbPosition().x;
-        rb.updatePhysics(dt);
-        position.y += rb.getRbPosition().y;
+        position += rb.getRbPosition();
+
         if (rb.getVelocity().x != 0 || rb.getVelocity().y != 0)
         {
             isWalking = true;
@@ -75,18 +76,29 @@ namespace diva
 
     void Player::updateCollision(BoxCollider2D collision)
     {
+        Contact c;
+
+        if(CollisionHandler::collisionDetection(collider, collision, c)){
+            if(collision.getObjectTag() == "Enemy"){
+                std::cout << "Player damaged" << std::endl;
+            }
+
+            if(collision.getObjectTag() == "Wall"){
+                position += CollisionHandler::collisionResolution(collider, c);
+            }
+        }
     }
 
     void Player::draw() const
     {
         // OM player Velocity == 0
 
-        TextureManager::getInstance()->draw("Player", (int)position.x, (int)position.y, 57, 43, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
+        TextureManager::getInstance()->draw(tag, (int)position.x, (int)position.y, 57, 43, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
         if (isWalking)
-            TextureManager::getInstance()->drawFrame("Player", (int)position.x, (int)position.y, 57, 43, cr, cf, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
+            TextureManager::getInstance()->drawFrame(tag, (int)position.x, (int)position.y, 57, 43, cr, cf, system.renderer, degrees, Spriteflip::HORIZONTALFLIP);
     }
 
-    void Player::getAngel()
+    void Player::getAngle()
     {
         float distX = collider.getCenterPoint().x - InputHandler::getInstance()->mousePos.x;
         float distY = InputHandler::getInstance()->mousePos.y - collider.getCenterPoint().y;

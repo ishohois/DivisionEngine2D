@@ -13,10 +13,13 @@ namespace diva
         BoxCollider2D collider;
         int w, h;
         int currentRow = 1, currentFrame = 1;
-        int hp = 10;
+        int hp = 3;
+        bool isDamaged = false;
+        float damageTimer = 1.0f;
+        float counter;
 
     public:
-        Wall(Vector2D *pos, int w, int h);
+        Wall(Vector2D pos, int w, int h);
         virtual void gameObjectUpdate(float dt);
         virtual void draw() const;                     
         virtual void updateCollision(BoxCollider2D collider);

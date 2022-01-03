@@ -14,6 +14,7 @@ namespace diva
  */
     Enemy::Enemy(int x, int y, int w, int h) : GameObject(), position(x, y), collider(position, w, h, "Enemy")
     {
+        setTag("Enemy");
         // laddar in spriten som ska användas samt sätter ett ID så att man kan hämta texuren från en map. sätter även en renderare.
         TextureManager::getInstance()->load((resPath + "images/Block.png").c_str(), "Enemy", system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
@@ -22,12 +23,20 @@ namespace diva
     void Enemy::gameObjectUpdate(float dt)
     {
 
+        if (!followPos)
+        {
+            return;
+        }
+
         rb.resetForce();
 
+        Vector2D dis = *followPos - position;
+
+        rb.applyForce(dis.normalize() * 0.02 * (fabs(dis.x) > fabs(dis.y) ? fabs(dis.x) : fabs(dis.y)));
+
         rb.updatePhysics(dt);
-        position.x += rb.getRbPosition().x;
-        rb.updatePhysics(dt);
-        position.y += rb.getRbPosition().y;
+        position += rb.getRbPosition();
+
         collider.updateCollider();
     }
 
@@ -40,6 +49,11 @@ namespace diva
             {
                 isDead = true;
                 GameManager::getInstance()->remove(this);
+                GameManager::getInstance()->removeCollider(collider);
+            }
+
+            if(collision.getObjectTag() == "Wall"){
+                position += CollisionHandler::collisionResolution(collider, c);
             }
         }
     }

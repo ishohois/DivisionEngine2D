@@ -57,13 +57,17 @@ namespace diva
             }
             g->~GameObject();
         }
-
         removed.clear();
     }
 
     void GameManager::addCollider(BoxCollider2D &b)
     {
         colliders.push_back(&b);
+    }
+
+    void GameManager::removeCollider(BoxCollider2D &b)
+    {
+        removedC.push_back(&b);
     }
 
     void GameManager::handleCollisions()
@@ -75,6 +79,31 @@ namespace diva
                 g->updateCollision(*b);
             }
         }
+
+        for (auto b : addedC)
+        {
+            colliders.push_back(b);
+        }
+        addedC.clear();
+
+        for (auto *b : removedC)
+        {
+            for (std::vector<BoxCollider2D *>::iterator it = colliders.begin(); it != colliders.end();)
+            {
+                if (*it == b)
+                {
+                    it = colliders.erase(it);
+                }
+                else
+                {
+                    it++;
+                }
+            }
+            b->~BoxCollider2D();
+        }
+        removed.clear();
+        
+
     }
 
     void GameManager::render()

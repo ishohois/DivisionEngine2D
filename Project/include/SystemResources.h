@@ -7,6 +7,10 @@
 
 namespace diva
 {
+
+    #define SCREENWIDTH 1280
+    #define SCREENHEIGHT 720
+
     struct SystemResources
     {
         SystemResources();

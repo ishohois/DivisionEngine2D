@@ -26,7 +26,7 @@ namespace diva
         }
         else
         {
-            return Vector2D(0, distY > 0 ? ct.intersectRect.h : -ct.intersectRect.h); // this resolved the intersection on y-axis
+            return Vector2D(0, distY > 0 ? ct.intersectRect.h : -ct.intersectRect.h); // this resolves the intersection on y-axis
         }
     }
 };

@@ -1,13 +1,11 @@
 #include "GameManager.h"
 #include "SystemResources.h"
-#include "TestGameObject.h"
-#include "Timer.h"
-#include "CollisionRectangle.h"
 #include "Vector2D.h"
 #include "BackGround.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "Wall.h"
 
 using namespace diva;
 
@@ -18,35 +16,21 @@ GameManager *g = GameManager::getInstance();
 - Background är det där fina där bak*/
 int main(int argc, char *argv[])
 {
-    Vector2D vec{200.0f, 500.0f};
+  
     Player *p = new Player(640, 0, 50, 50);
-    Enemy *e = new Enemy(500,500, 50, 50);
-
-    CollisionRectangle *cr1 = new CollisionRectangle(vec, 200, 50);
-    vec.x = 400.0f;
-    CollisionRectangle *cr2 = new CollisionRectangle(vec, 200, 50);
-    vec.x = 600.0f;
-    CollisionRectangle *cr3 = new CollisionRectangle(vec, 200, 50);
+    Enemy *e = new Enemy(500, 500, 50, 50);
+    e->setFollowPos(p->getPosition());
+    Wall *w = new Wall(Vector2D{200,500}, 50, 50);
 
     //BackGround *b1 = new BackGround();
-    // Bullet *bull = new Bullet(10,0,50,50);
 
-    // g->add(bull);
-    //g->add(b1);
-    //g->add(tg);
     g->add(p);
     g->add(e);
-    // g->add(cr1);
-    // g->add(cr2);
-    // g->add(cr3);
+    g->add(w);
 
-    g->addCollider(p->getCollider());
+    g->addCollider(p->getCollider());   
     g->addCollider(e->getCollider());
-    
-    // g->addCollider(cr1->getCollider());
-    // g->addCollider(cr2->getCollider());
-    // g->addCollider(cr3->getCollider());
-
+    g->addCollider(w->getCollider());
     g->runGameLoop();
 
     return 0;

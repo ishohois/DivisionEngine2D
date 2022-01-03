@@ -14,7 +14,7 @@ namespace diva
         Vector2D position;
         BoxCollider2D collider;
         RigidBody2D rb;
-        void getAngel();
+        void getAngle();
         int cr = 1, cf = 1;
         float degrees = 0;
         bool isWalking = false;
@@ -28,6 +28,7 @@ namespace diva
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         virtual void updateCollision(BoxCollider2D collision);
+        Vector2D* getPosition() {return &position;}
         void shoot(float &sTime);
 
         BoxCollider2D &getCollider() { return collider; };
