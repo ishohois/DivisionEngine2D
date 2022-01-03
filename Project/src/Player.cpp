@@ -20,6 +20,7 @@ namespace diva
         TextureManager::getInstance()->load((resPath + "images/PlayerSprite/RBS.png").c_str(), tag, system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
         shootCounter = shootTime;
+        counter = damageTimer;
     }
 
     void Player::gameObjectUpdate(float dt)
@@ -72,6 +73,25 @@ namespace diva
             isWalking = false;
         }
         collider.updateCollider();
+
+        if (isDamaged)
+        {
+            counter -= (dt / 100);
+        }
+
+        if (counter <= 0)
+        {
+            hp--;
+            counter = damageTimer;
+            isDamaged = false;
+            std::cout << "Spelarens hp: " << hp << std::endl;
+        }
+
+        if(hp <= 0){
+            GameManager::getInstance()->remove(this);
+            GameManager::getInstance()->removeCollider(collider);
+        }
+
     }
 
     void Player::updateCollision(BoxCollider2D collision)
@@ -81,6 +101,7 @@ namespace diva
         if(CollisionHandler::collisionDetection(collider, collision, c)){
             if(collision.getObjectTag() == "Enemy"){
                 std::cout << "Player damaged" << std::endl;
+                isDamaged = true;
             }
 
             if(collision.getObjectTag() == "Wall"){

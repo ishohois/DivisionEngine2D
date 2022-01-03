@@ -16,6 +16,10 @@ namespace diva
         RigidBody2D rb;
         void getAngle();
         int cr = 1, cf = 1;
+        int hp = 5;
+        bool isDamaged = false;
+        float damageTimer = 0.6f;
+        float counter;
         float degrees = 0;
         bool isWalking = false;
         float shootTime = 0.1f;
