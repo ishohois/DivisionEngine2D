@@ -22,11 +22,13 @@ int main(int argc, char *argv[])
     e->setFollowPos(p->getPosition());
     Wall *w = new Wall(Vector2D{200,500}, 50, 50);
 
-    //BackGround *b1 = new BackGround();
+    BackGround *b1 = new BackGround();
 
+    g->add(b1);
     g->add(p);
     g->add(e);
     g->add(w);
+    
 
     g->addCollider(p->getCollider());   
     g->addCollider(e->getCollider());
