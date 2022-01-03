@@ -9,7 +9,7 @@ namespace diva
     Wall::Wall(Vector2D pos, int w, int h) : GameObject(), pos(pos), collider(pos, w, h, "Wall"), w(w), h(h)
     {
         setTag("Wall");
-        TextureManager::getInstance()->load(resPath + "images/Block 2.png", "Wall", system.renderer);
+        TextureManager::getInstance()->load(resPath + "images/Wall.png", "Wall", system.renderer);
         counter = damageTimer;
     }
 

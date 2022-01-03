@@ -100,7 +100,6 @@ namespace diva
 
         if(CollisionHandler::collisionDetection(collider, collision, c)){
             if(collision.getObjectTag() == "Enemy"){
-                std::cout << "Player damaged" << std::endl;
                 isDamaged = true;
             }
 

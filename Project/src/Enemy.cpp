@@ -63,8 +63,8 @@ namespace diva
     {
         if (!isDead)
         {
-            TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 50, 50, system.renderer, degrees, Spriteflip::VERTICALFLIP);
-            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 50, 50, cr, cf, system.renderer, degrees, Spriteflip::VERTICALFLIP);
+            TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 33, 43, system.renderer, degrees, Spriteflip::VERTICALFLIP);
+            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 33, 43, cr, cf, system.renderer, degrees, Spriteflip::VERTICALFLIP);
         }
     }
 

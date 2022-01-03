@@ -10,7 +10,7 @@ namespace diva
     Bullet::Bullet(Vector2D origin, Vector2D target) : GameObject(), pos(origin), collider(pos, 10, 10, "Bullet")
     {
         GameManager::getInstance()->add(this);
-        TextureManager::getInstance()->load((resPath + "images/Block.png").c_str(), "Bullet", system.renderer);
+        TextureManager::getInstance()->load((resPath + "images/bullet.png").c_str(), "Bullet", system.renderer);
         rb.setGravity(0);
         dir = target - origin;
         dir.normalize();
@@ -20,7 +20,7 @@ namespace diva
     void Bullet::draw() const
     {
         if (!destroy())
-            TextureManager::getInstance()->draw("Bullet", pos.x, pos.y, 10, 10, system.renderer, 0, Spriteflip::FLIPNONE);
+            TextureManager::getInstance()->draw("Bullet", pos.x, pos.y, 64, 64, system.renderer, 0, Spriteflip::FLIPNONE);
     }
 
     void Bullet::gameObjectUpdate(float dt)
