@@ -16,7 +16,7 @@ namespace diva
     {
         setTag("Enemy");
         // laddar in spriten som ska användas samt sätter ett ID så att man kan hämta texuren från en map. sätter även en renderare.
-        TextureManager::getInstance()->load((resPath + "images/Block.png").c_str(), "Enemy", system.renderer);
+        TextureManager::getInstance()->load((resPath + "images/enemy.png").c_str(), "Enemy", system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
     }
 
@@ -30,7 +30,8 @@ namespace diva
 
         rb.resetForce();
 
-        Vector2D dis = *followPos - position;
+        dis = *followPos - position;
+        rotateTowards();
 
         rb.applyForce(dis.normalize() * 0.02 * (fabs(dis.x) > fabs(dis.y) ? fabs(dis.x) : fabs(dis.y)));
 
@@ -62,9 +63,14 @@ namespace diva
     {
         if (!isDead)
         {
-            TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 50, 50, system.renderer, 0, Spriteflip::FLIPNONE);
-            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 50, 50, cr, cf, system.renderer, 0, Spriteflip::FLIPNONE);
+            TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 50, 50, system.renderer, degrees, Spriteflip::VERTICALFLIP);
+            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 50, 50, cr, cf, system.renderer, degrees, Spriteflip::VERTICALFLIP);
         }
+    }
+
+    void Enemy::rotateTowards() {
+        float radians = (atan2(dis.y, dis.x));
+        degrees = radians * (180 / 3.14);
     }
 
     Enemy::~Enemy()

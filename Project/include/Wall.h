@@ -21,7 +21,7 @@ namespace diva
     public:
         Wall(Vector2D pos, int w, int h);
         virtual void gameObjectUpdate(float dt);
-        virtual void draw() const;                     
+        virtual void draw() const;
         virtual void updateCollision(BoxCollider2D collider);
         BoxCollider2D& getCollider(){return collider;}
         ~Wall(){};

@@ -14,6 +14,7 @@ namespace diva
         SDL_RendererFlip flip = SDL_FLIP_NONE;
         Vector2D position;
         Vector2D *followPos;
+        Vector2D dis;
         BoxCollider2D collider;
         RigidBody2D rb;
         int cr = 1, cf = 1;
@@ -30,6 +31,7 @@ namespace diva
         virtual void updateCollision(BoxCollider2D collision);
         BoxCollider2D &getCollider() { return collider; };
         void setFollowPos(Vector2D* follow){followPos = follow;}
+        void rotateTowards();
     };
 
 } // End of Diva
