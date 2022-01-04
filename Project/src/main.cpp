@@ -18,6 +18,7 @@ GameManager *g = GameManager::getInstance();
 - Bullet sköter logik för skotten som spelaren skjuter ut.
 - CollisionHandler är huvudklassen för all kollisionsdetektering.
 - EnemySpawner skapar fiender 
+- 
 */
 int main(int argc, char *argv[])
 {

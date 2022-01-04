@@ -4,9 +4,10 @@
 #include <Timer.h>
 #include "CollisionHandler.h"
 #include "Contact.h"
-#include "TestGameObject.h"
 #include "TextureManager.h"
 #include "Input.h"
+
+//används för att lägga till, ta bort och hantera GameObjects(spelaren, väggar, fiender).
 
 namespace diva
 {
