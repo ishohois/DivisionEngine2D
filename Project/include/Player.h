@@ -16,7 +16,7 @@ namespace diva
         RigidBody2D rb;
         void getAngle();
         int cr = 1, cf = 1;
-        int hp = 5;
+        int hp = 1;
         bool isDamaged = false;
         float damageTimer = 0.6f;
         float counter;
@@ -34,8 +34,8 @@ namespace diva
         virtual void updateCollision(BoxCollider2D collision);
         Vector2D* getPosition() {return &position;}
         void shoot(float &sTime);
-
         BoxCollider2D &getCollider() { return collider; };
+        int* getHP(){return &hp;}
     };
 
 } // End of Diva

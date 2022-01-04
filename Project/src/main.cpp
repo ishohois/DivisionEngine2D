@@ -27,9 +27,14 @@ int main(int argc, char *argv[])
     g->add(b1);
     
     Player *p = new Player((float)(SCREENWIDTH / 2 - 25), (float)(SCREENHEIGHT / 2 - 25), 50, 50);
+    b1->setHP(p->getHP());
 
     EnemySpawner *spawner = new EnemySpawner();
     spawner->setFollowPos(p->getPosition());
+    spawner->setHP(p->getHP());
+
+    g->add(p);
+    g->addCollider(p->getCollider());
 
     Wall *w = nullptr;
     for (int i = 1; i < 3; i++)
@@ -41,9 +46,6 @@ int main(int argc, char *argv[])
             g->addCollider(w->getCollider());
         }
     }
-
-    g->add(p);
-    g->addCollider(p->getCollider());
 
     g->runGameLoop();
 

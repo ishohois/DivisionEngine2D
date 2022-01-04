@@ -51,7 +51,7 @@ namespace diva
 
     bool Bullet::destroy() const
     {
-        return pos.x <= 0 || pos.x >= 1280 || pos.y <= 0 || pos.y >= 720;
+        return pos.x <= 0 || pos.x >= SCREENWIDTH || pos.y <= 0 || pos.y >= SCREENHEIGHT;
     }
 
     Bullet::~Bullet()
