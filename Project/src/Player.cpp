@@ -136,9 +136,7 @@ namespace diva
         }
 
         Vector2D v{(float)InputHandler::getInstance()->mousePos.x, (float)InputHandler::getInstance()->mousePos.y};
-        Vector2D dir = v - position;
-        bull = new Bullet(position, v); // Hur lägger vi till den i GameManager?
-        GameManager::getInstance()->addCollider(bull->getCollider());
+        bull = new Bullet(position, v);
         sTime = shootTime;
         bull = nullptr;
     }

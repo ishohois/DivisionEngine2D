@@ -18,6 +18,7 @@ namespace diva
         // laddar in spriten som ska användas samt sätter ett ID så att man kan hämta texuren från en map. sätter även en renderare.
         TextureManager::getInstance()->load((resPath + "images/enemy.png").c_str(), "Enemy", system.renderer);
         rb.setGravity(0); // Eftersom spelet är topdown och vi fortfarande vill använda våran ridigbody klass så sätter vi gravity till 0.
+        isDead = false;
     }
 
     void Enemy::gameObjectUpdate(float dt)
@@ -64,7 +65,7 @@ namespace diva
         if (!isDead)
         {
             TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 33, 43, system.renderer, degrees, Spriteflip::VERTICALFLIP);
-            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 33, 43, cr, cf, system.renderer, degrees, Spriteflip::VERTICALFLIP);
+            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 33, 43, 0, 0, system.renderer, degrees, Spriteflip::VERTICALFLIP);
         }
     }
 

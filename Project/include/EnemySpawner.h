@@ -6,25 +6,30 @@
 #include <vector>
 #include "Vector2D.h"
 #include "Enemy.h"
+#include "GameObject.h"
+#include <random>
+#include "TextureManager.h"
 
 namespace diva
 {
 
-    struct Wave
+    class EnemySpawner : public GameObject
     {
-        int numEnemy;
-    };
+    private:
+        float startTimer = 5.0f;
+        float counter;
+        bool started = false;
+        Vector2D *follow;
 
-    class EnemySpawner
-    {
-        private:
-        std::vector<Wave> waves;
-        
-        public:
+    public:
         EnemySpawner();
-        ~EnemySpawner();
-        void SpawnEnemyWave();
-        void LoadEnemyWave();
+        ~EnemySpawner() {}
+        void loadEnemyWave();
+        Vector2D getRandomSide();
+        void setFollowPos(Vector2D *follow);
+        virtual void gameObjectUpdate(float dt);
+        virtual void draw() const {};
+        virtual void updateCollision(){};
     };
 }
 

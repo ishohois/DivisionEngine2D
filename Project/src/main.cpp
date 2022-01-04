@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Wall.h"
+#include "EnemySpawner.h"
 
 using namespace diva;
 
@@ -20,9 +21,12 @@ int main(int argc, char *argv[])
     BackGround *b1 = new BackGround();
     g->add(b1);
     
-    Player *p = new Player(640, 0, 50, 50);
-    Enemy *e = new Enemy(500, 500, 50, 50);
-    e->setFollowPos(p->getPosition());
+    Player *p = new Player((float)(SCREENWIDTH / 2 - 25), (float)(SCREENHEIGHT / 2 - 25), 50, 50);
+    //Enemy *e = new Enemy(500, 500, 50, 50);
+    //e->setFollowPos(p->getPosition());
+
+    EnemySpawner *spawner = new EnemySpawner();
+    spawner->setFollowPos(p->getPosition());
 
     Wall *w = nullptr;
     for (int i = 1; i < 3; i++)
@@ -37,10 +41,10 @@ int main(int argc, char *argv[])
     w = nullptr;
 
     g->add(p);
-    g->add(e);
+    //g->add(e);
 
     g->addCollider(p->getCollider());
-    g->addCollider(e->getCollider());
+    //g->addCollider(e->getCollider());
     g->runGameLoop();
 
     return 0;

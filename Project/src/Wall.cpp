@@ -26,7 +26,6 @@ namespace diva
             hp--;
             counter = damageTimer;
             isDamaged = false;
-            std::cout << "ouch..wall starts to crumble.." << hp << std::endl;
         }
 
         if(hp <= 0){

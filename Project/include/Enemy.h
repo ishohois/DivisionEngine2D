@@ -19,8 +19,7 @@ namespace diva
         RigidBody2D rb;
         int cr = 1, cf = 1;
         float degrees = 0;
-        bool isWalking = false;
-        bool isDead = false;
+        bool isDead;
 
     public:
         Enemy(int x, int y, int w, int h);
