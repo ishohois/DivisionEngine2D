@@ -13,8 +13,12 @@ using namespace diva;
 GameManager *g = GameManager::getInstance();
 
 /*räkna upp vilka filer som tillför spelet
-- TestGameObject är vår bla bla
-- Background är det där fina där bak*/
+- Player har funktioner för spelarens rörelse, vapen samt kollisionsdetektering.
+- Wall sköter väggarnas kollision och logik.
+- Bullet sköter logik för skotten som spelaren skjuter ut.
+- CollisionHandler är huvudklassen för all kollisionsdetektering.
+- EnemySpawner skapar fiender 
+*/
 int main(int argc, char *argv[])
 {
 
