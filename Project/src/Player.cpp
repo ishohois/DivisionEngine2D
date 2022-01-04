@@ -60,7 +60,6 @@ namespace diva
         // När spelaren sjukter så ska den instanziera en annan klass som är av typ "Skott" eller liknande
         cf = int(((SDL_GetTicks() / 100) % 2));
 
-
         rb.updatePhysics(dt);
         position += rb.getRbPosition();
 
@@ -84,26 +83,28 @@ namespace diva
             hp--;
             counter = damageTimer;
             isDamaged = false;
-            std::cout << "Spelarens hp: " << hp << std::endl;
         }
 
-        if(hp <= 0){
+        if (hp <= 0)
+        {
             GameManager::getInstance()->remove(this);
             GameManager::getInstance()->removeCollider(collider);
         }
-
     }
 
     void Player::updateCollision(BoxCollider2D collision)
     {
         Contact c;
 
-        if(CollisionHandler::collisionDetection(collider, collision, c)){
-            if(collision.getObjectTag() == "Enemy"){
+        if (CollisionHandler::collisionDetection(collider, collision, c))
+        {
+            if (collision.getObjectTag() == "Enemy")
+            {
                 isDamaged = true;
             }
 
-            if(collision.getObjectTag() == "Wall"){
+            if (collision.getObjectTag() == "Wall")
+            {
                 position += CollisionHandler::collisionResolution(collider, c);
             }
         }
@@ -128,7 +129,7 @@ namespace diva
 
     void Player::shoot(float &sTime)
     {
-        Bullet *bull = nullptr;
+        //Bullet *bull = nullptr;
 
         if (sTime >= 0)
         {
@@ -136,7 +137,7 @@ namespace diva
         }
 
         Vector2D v{(float)InputHandler::getInstance()->mousePos.x, (float)InputHandler::getInstance()->mousePos.y};
-        bull = new Bullet(position, v);
+        Bullet *bull = new Bullet(position, v);
         sTime = shootTime;
         bull = nullptr;
     }

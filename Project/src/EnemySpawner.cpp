@@ -5,8 +5,6 @@ namespace diva
     EnemySpawner::EnemySpawner()
     {
         GameManager::getInstance()->add(this);
-        // waves.push_back(wave2);
-        // waves.push_back(wave3);
         counter = 0.5f;
     }
 
@@ -23,7 +21,6 @@ namespace diva
         e->setFollowPos(follow);
         GameManager::getInstance()->add(e);
         GameManager::getInstance()->addCollider(e->getCollider());
-        std::cout << "Enemyspawned" << std::endl;
     }
 
     Vector2D EnemySpawner::getRandomSide()
@@ -49,6 +46,10 @@ namespace diva
         return side;
     }
 
+    void EnemySpawner::setHP(int *hpP){
+        hp = hpP;
+    }
+
     void EnemySpawner::setFollowPos(Vector2D *f)
     {
         follow = f;
@@ -56,6 +57,10 @@ namespace diva
 
     void EnemySpawner::gameObjectUpdate(float dt)
     {
+        if(hp && *hp<= 0){
+            return;
+        }
+
         if (!started)
         {
             startTimer -= (dt / 100);
