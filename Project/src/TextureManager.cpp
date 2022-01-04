@@ -1,6 +1,7 @@
 #include <TextureManager.h>
 #include <SDL2/SDL_image.h>
 #include "SystemResources.h"
+
 namespace diva
 {
     TextureManager *TextureManager::instance = nullptr; // inizilasing the instance.
@@ -37,6 +38,10 @@ namespace diva
 
     bool TextureManager::loadFont(std::string id, std::string fileName, std::string text)
     {
+        if(TTexturemap[id]){
+            return true;
+        }
+
         ids = id;
         ourFont = TTF_OpenFont((resPath + fileName).c_str(), 32);
 
@@ -128,6 +133,22 @@ namespace diva
         destRect.y = y;
 
         SDL_RenderCopyEx(TRenderer, TTexturemap[id], &srcRect, &destRect, angel, 0, flip);
+    }
+
+    void TextureManager::cleanUp(){
+        for(auto it = TTexturemap.begin(); it != TTexturemap.end(); it++){
+            SDL_DestroyTexture(it->second);
+        }
+        TTexturemap.clear();
+
+        for(auto it = TFontmap.begin(); it != TFontmap.end(); it++){
+            TTF_CloseFont(it->second);
+        }
+
+        TFontmap.clear();
+
+        IMG_Quit();
+        TTF_Quit();
     }
 
 }

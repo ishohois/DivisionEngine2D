@@ -42,6 +42,10 @@ enum Spriteflip{
         SDL_Texture *T;
         std::string ids;
 
+         // This map will contain all the textures in the game.
+        std::map<std::string, SDL_Texture *> TTexturemap;
+        std::map<std::string, TTF_Font *> TFontmap;
+
     public:
         static TextureManager *getInstance()
         { // this is how we accses an instance.
@@ -66,9 +70,7 @@ enum Spriteflip{
         bool loadFont(std::string id,std::string fileName, std::string text);
         void drawText(std::string id, int x, int y, int w, int h);
         void setText(const std::string& newText,std::string id);
-        // This map will contain all the textures in the game.
-        std::map<std::string, SDL_Texture *> TTexturemap;
-        std::map<std::string, TTF_Font *> TFontmap;
+        void cleanUp();
     };
 
 }

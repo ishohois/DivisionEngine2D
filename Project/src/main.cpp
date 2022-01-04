@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
     g->add(b1);
     
     Player *p = new Player((float)(SCREENWIDTH / 2 - 25), (float)(SCREENHEIGHT / 2 - 25), 50, 50);
-    //Enemy *e = new Enemy(500, 500, 50, 50);
-    //e->setFollowPos(p->getPosition());
 
     EnemySpawner *spawner = new EnemySpawner();
     spawner->setFollowPos(p->getPosition());
@@ -38,14 +36,15 @@ int main(int argc, char *argv[])
             g->addCollider(w->getCollider());
         }
     }
-    w = nullptr;
 
     g->add(p);
-    //g->add(e);
-
     g->addCollider(p->getCollider());
-    //g->addCollider(e->getCollider());
+
     g->runGameLoop();
+
+    p = nullptr;
+    spawner = nullptr;
+    w = nullptr;
 
     return 0;
 }

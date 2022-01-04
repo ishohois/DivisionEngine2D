@@ -23,7 +23,6 @@ namespace diva
 
     void Enemy::gameObjectUpdate(float dt)
     {
-
         if (!followPos)
         {
             return;
@@ -65,7 +64,7 @@ namespace diva
         if (!isDead)
         {
             TextureManager::getInstance()->draw("Enemy", (int)position.x, (int)position.y, 33, 43, system.renderer, degrees, Spriteflip::VERTICALFLIP);
-            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 33, 43, 0, 0, system.renderer, degrees, Spriteflip::VERTICALFLIP);
+            TextureManager::getInstance()->drawFrame("Enemy", (int)position.x, (int)position.y, 33, 43, cr, cf, system.renderer, degrees, Spriteflip::VERTICALFLIP);
         }
     }
 
