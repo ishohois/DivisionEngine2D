@@ -35,10 +35,10 @@ namespace diva
         virtual void draw() const;
         virtual void gameObjectUpdate(float dt);
         virtual void updateCollision(BoxCollider2D collision);
-        Vector2D* getPosition() {return &position;}
+        Vector2D *getPosition() { return &position; }
         void shoot(float &sTime);
         BoxCollider2D &getCollider() { return collider; };
-        int* getHP(){return &hp;}
+        int *getHP() { return &hp; }
     };
 
 } // End of Diva

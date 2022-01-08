@@ -23,7 +23,7 @@ namespace diva
         void updatePhysics(float dt)
         {
             rbAcceleration.x = (rbForce.x + rbFriction.x) / rbMass;
-            rbAcceleration.y = (rbForce.y + rbGravity ) / rbMass;
+            rbAcceleration.y = (rbForce.y + rbGravity) / rbMass;
 
             rbVelocity = rbAcceleration;
             rbPosition = rbVelocity;
@@ -32,9 +32,9 @@ namespace diva
         inline void setMass(float mass) { rbMass = mass; }
         inline void setGravity(float gravity) { rbGravity = gravity; }
 
-        inline Vector2D getPosition(){return rbPosition;}
-        inline Vector2D getVelocity(){return rbVelocity;}
-        inline Vector2D getAcceleration(){return rbAcceleration;}
+        inline Vector2D getPosition() { return rbPosition; }
+        inline Vector2D getVelocity() { return rbVelocity; }
+        inline Vector2D getAcceleration() { return rbAcceleration; }
 
         // force
         inline void applyForce(Vector2D f) { rbForce = f; }

@@ -17,9 +17,8 @@ namespace diva
     public:
         BoxCollider2D() {}
         BoxCollider2D(Vector2D &objectPosition, int w, int h, std::string tag) : gameObjectPosition(&objectPosition),
-        objectTag(tag), colliderRect{static_cast<int>(objectPosition.x), static_cast<int>(objectPosition.y), w, h}{}
-        ~BoxCollider2D(){}
-
+                                                                                 objectTag(tag), colliderRect{static_cast<int>(objectPosition.x), static_cast<int>(objectPosition.y), w, h} {}
+        ~BoxCollider2D() {}
 
         inline void updateCollider()
         {

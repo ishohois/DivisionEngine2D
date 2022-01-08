@@ -28,7 +28,7 @@ namespace diva
         void loadEnemyWave();
         Vector2D getRandomSide();
         void setFollowPos(Vector2D *follow);
-        void setHP(int* hp);
+        void setHP(int *hp);
         virtual void gameObjectUpdate(float dt);
         virtual void draw() const {};
         virtual void updateCollision(){};

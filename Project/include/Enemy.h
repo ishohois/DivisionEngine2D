@@ -29,7 +29,7 @@ namespace diva
         virtual void gameObjectUpdate(float dt);
         virtual void updateCollision(BoxCollider2D collision);
         BoxCollider2D &getCollider() { return collider; };
-        void setFollowPos(Vector2D* follow){followPos = follow;}
+        void setFollowPos(Vector2D *follow) { followPos = follow; }
         void rotateTowards();
     };
 

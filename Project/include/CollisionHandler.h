@@ -8,9 +8,9 @@ namespace diva
 {
     struct CollisionHandler
     {
-        static bool collisionDetection(const BoxCollider2D &b1, const BoxCollider2D &b2, Contact& ct);
+        static bool collisionDetection(const BoxCollider2D &b1, const BoxCollider2D &b2, Contact &ct);
         static bool collisionDetection(const BoxCollider2D &b1, const BoxCollider2D &b2);
-        static Vector2D collisionResolution(const BoxCollider2D &b, Contact& ct);
+        static Vector2D collisionResolution(const BoxCollider2D &b, Contact &ct);
     };
 };
 

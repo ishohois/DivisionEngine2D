@@ -23,7 +23,7 @@ namespace diva
         virtual void gameObjectUpdate(float dt);
         virtual void draw() const;
         virtual void updateCollision(BoxCollider2D collider);
-        BoxCollider2D& getCollider(){return collider;}
+        BoxCollider2D &getCollider() { return collider; }
         ~Wall(){};
     };
 
