@@ -5,7 +5,12 @@
 #include "Rigidbody2D.h"
 
 namespace diva
-{
+{ /* Denna klass tillhör spelet
+    Detta är klassen som representerar fienden i spelet.
+    Fienden kommer att följa spelaren och rotera mot den och träffar fienden spelaren så kommer denna att ta skada
+    Om spelaren sjukter på fienden så dör denna och förstörs.
+
+*/
 
     class Enemy : public GameObject
     {

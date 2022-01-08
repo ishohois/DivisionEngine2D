@@ -6,7 +6,9 @@
 
 namespace diva
 {
-    /**/
+    /*Denna klass tillhör Spelmotorn
+    Den fungerar liknande som en vector2d i unity
+    */
     struct Vector2D
     {
         float x, y;

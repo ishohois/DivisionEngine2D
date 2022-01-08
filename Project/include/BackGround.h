@@ -3,7 +3,9 @@
 
 #include "GameObject.h"
 namespace diva
-{
+{ /* Denna klass tillhör spelet 
+    Klassen gör så att det finns en bakgrund och skriver också upp en text om spelaren är död.
+*/
 
     class BackGround : public GameObject
     {

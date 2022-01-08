@@ -8,7 +8,7 @@
 namespace diva
 {
     /* Denna klass tillhär spelmotorn
-    
+        Klassen är tänkt att ha resurser som många klasser kommer vara beroenda av.
  */
 #define SCREENWIDTH 1280
 #define SCREENHEIGHT 720

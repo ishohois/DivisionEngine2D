@@ -12,7 +12,9 @@ using namespace diva;
 
 GameManager *g = GameManager::getInstance();
 
-/*räkna upp vilka filer som tillför spelet
+/*
+Kommentarer vad klasserna göra/tillhör finns i H-filerna.
+räkna upp vilka filer som tillför spelet
 - Player har funktioner för spelarens rörelse, vapen samt kollisionsdetektering.
 - Wall sköter väggarnas kollision och logik.
 - Bullet sköter logik för skotten som spelaren skjuter ut.

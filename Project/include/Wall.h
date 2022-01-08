@@ -6,6 +6,9 @@
 
 namespace diva
 {
+    /*Den här klassen tillhör spelet
+        Det är väggar som spelaren kan gömma sig bakom.
+    */
     class Wall : public GameObject
     {
     private:

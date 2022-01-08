@@ -11,7 +11,11 @@
 #include "TextureManager.h"
 
 namespace diva
-{
+{ /* Denna klass tillhör spelet. 
+    Denna klass spawner fiender sålänge spelaren har Hp.
+     De spawnas alltid utanför skärmen och går in mot spelaren.
+
+*/
 
     class EnemySpawner : public GameObject
     {
@@ -20,7 +24,7 @@ namespace diva
         float counter;
         bool started = false;
         Vector2D *follow;
-        int *hp;
+        int *hp; // Spelarens HP
 
     public:
         EnemySpawner();

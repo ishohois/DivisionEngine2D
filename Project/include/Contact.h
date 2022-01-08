@@ -5,7 +5,10 @@
 #include <SDL2/SDL.h>
 
 namespace diva
-{
+{/* Den här klassen tillhör Spelmotorn.
+    Contact används för att skicka kollion information mellan kolliderade objekt.
+
+*/
 
     struct Contact
     {

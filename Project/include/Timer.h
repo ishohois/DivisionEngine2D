@@ -8,8 +8,7 @@
 namespace diva
 {
     /* Denna klass tillhär spelmotorn 
-    Klassen håller koll på 
-
+    Klassen håller koll på tickrate,delat samt att den bestämmer FPS.
     */
 
     class Timer

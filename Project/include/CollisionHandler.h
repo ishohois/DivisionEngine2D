@@ -5,7 +5,10 @@
 #include "Contact.h"
 
 namespace diva
-{
+{ /*
+    Denna klass använder Contact klassen för att kolla kollion.
+    
+*/
     struct CollisionHandler
     {
         static bool collisionDetection(const BoxCollider2D &b1, const BoxCollider2D &b2, Contact &ct);

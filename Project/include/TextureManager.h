@@ -13,18 +13,15 @@ namespace diva
         HORIZONTALFLIP,
         VERTICALFLIP
     };
-    /*What does this class do?
-        This class implements a design pattern "sigelton" the reson behinde this is that we only 
-        want one instance of this class to be used at anytime.
-    
-        This class is used for load/drawing out our differnet objects to the screen. It uses pos of the object and alos it's 
-        with and height to determent it's pos on the screen.
+    /*Den här klassen tillhör Spelmotorn
 
-        The load function takes a filepath and gives each object to draw an ID. We want this becuase it's 
-        a way to know what item we want to work with and we can use the ID to find the pos in the map that we use to
-        store all the textures. In the drawFrame function we alos take in a row and a frame 
-        this eneble us to do simple animation from sprtiessheets. More infromation on what they do in this class CPP.
-        
+        Klassen implementerar en singelton för att vi kommer bara vilja ha en instance av denna som används itaget.
+        Klassen används för att ladda in och rita ut våra objekt till skärmen. Den använder objects position,höjd och bredd för att
+        bestämma positionen på skärmen.
+
+        Load funktionen tar en filesökväf och en tag. Vi behöver en Tag för att veta vilken textur som ska laddas från MAPen av 
+        texturer vi har. 
+        Med funktionen drawFrame kan vi göra simpla animationer från ett sprite sheet.
      */
 
     class TextureManager
