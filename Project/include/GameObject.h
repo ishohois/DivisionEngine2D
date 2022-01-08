@@ -6,6 +6,11 @@
 
 namespace diva
 {
+    /* 
+    Denna klass är vårat gameobject, för att skapa ett spelobjekt i spelvärlden ska man använda denna klass. Den ser till att värdesamantiks tas bort och den har 
+    virtuella funktioner som tvingar objekt som ärver från klassen att implementera de på något sätt. Man kan ge objekt en tag.
+
+     */
     /*General base class for game objects in DivisionEngine*/
     class GameObject
     {

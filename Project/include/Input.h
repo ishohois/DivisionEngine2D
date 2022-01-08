@@ -5,6 +5,8 @@
 
 namespace diva
 {
+    /* Denna klass tar han om input systemet för spelmotorn. Med denna kan man lätt komma åt och använda olika knappar från
+    tangentbordet och musen. Input är också en singelton för att man bara ska kunna använda en instance av klassen.*/
     enum KEYS
     {
         UP = SDL_SCANCODE_UP,

@@ -7,6 +7,7 @@
 
 namespace diva
 {
+    /* Denna klass används i spelet för att skapa kulor som spelaren sjukter med.*/
     class Bullet : public GameObject
     {
     private:

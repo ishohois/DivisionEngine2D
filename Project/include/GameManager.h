@@ -10,6 +10,10 @@ namespace diva
 {
     class GameManager
     {
+        /*Denna klass är vad som håller koll på vad som finns i spelet. Om man vill lägga till någonting måste man använda denna. Den är gjord till en singelton
+        för att vi vill ändas att en instance av en gamemanger ska finnas. Det gör också det betydligt lättare att skapa och lägga till objekt i klasser utanför
+        main. Vilket man ofta behöver göra. Man lägger till både boxcolliders och gameobjects i olika vectorer. 
+        */
     private:
         GameManager(){};
         static GameManager *instance;

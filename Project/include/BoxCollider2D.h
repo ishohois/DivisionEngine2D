@@ -6,6 +6,12 @@
 
 namespace diva
 {
+    /* Vad gör denna klass?
+    Denna klass används för att ge olika objekt boxcolliders som kan användas för lätt kunna hämta och updatera colliders.
+    Den försöker likna Unitys boxcollider2d klass. Varje objekt som använder en boxcollider får en tag som kan användas för 
+    att tillexempel kolla vad man har kolliderat med.    
+    
+    */
     class BoxCollider2D
     {
     public:
