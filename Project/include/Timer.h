@@ -7,6 +7,10 @@
 
 namespace diva
 {
+    /* Denna klass tillhär spelmotorn 
+    Klassen håller koll på 
+
+    */
 
     class Timer
     {

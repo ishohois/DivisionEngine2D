@@ -6,10 +6,10 @@
 
 namespace diva
 {
-    /* 
-    Denna klass är vårat gameobject, för att skapa ett spelobjekt i spelvärlden ska man använda denna klass. Den ser till att värdesamantiks tas bort och den har 
-    virtuella funktioner som tvingar objekt som ärver från klassen att implementera de på något sätt. Man kan ge objekt en tag.
-
+    /*  Denna klass tillhör spelmotorn
+    Denna klass är en bas klass för alla spelobjekt i vår spelmotor. Den har virtuella funktioner som gör att den uppdateras av våran spelloop.
+    Spel objekt kan ges an tag så att man kan använda den för att kolla kollion tillexempel. Eftersom konstruktorn är protected så kan man inte 
+    instanziera denna klass, utan bara subklasser kommer åt konstruktorn. Vi har även sätt till att förhindra kopiering av klassen samt tilldelning. 
      */
     /*General base class for game objects in DivisionEngine*/
     class GameObject
@@ -18,7 +18,6 @@ namespace diva
         // ta bort värdesemantik från klassen
         GameObject(const GameObject &other) = delete;
         const GameObject &operator=(const GameObject &other) = delete;
-
     protected:
         GameObject() {} // only available for sub classes of GameObject
         std::string tag;

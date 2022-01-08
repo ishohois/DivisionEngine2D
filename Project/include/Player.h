@@ -6,6 +6,9 @@
 namespace diva
 {
 
+    /* Denna klass tillhör spelet.
+    Klassen är våran spelare. Den ärver från GameObject som man måste göra för att skapa spelobjekt. '
+    */
     class Player : public GameObject
     {
     private:

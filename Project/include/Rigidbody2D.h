@@ -7,7 +7,13 @@
 
 namespace diva
 {
-    /*vad tillför klassen vårt spel?*/
+    /*Denna klass tillhör våran spelmotor
+    Denna klass är till att fungera liknande som Rigidbody2d gör i unity, ett spelobjekt kan implementera
+    denna klass för att styra spelaren göra så att spelaren faller mot marken(gravity). Det gör också
+    så att man kan applyaforce till spelobjektet. Mass pch gravity defineras från start men kan ändras om man
+    så vill.
+    
+    */
     class RigidBody2D
     {
 

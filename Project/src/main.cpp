@@ -16,7 +16,6 @@ GameManager *g = GameManager::getInstance();
 - Player har funktioner för spelarens rörelse, vapen samt kollisionsdetektering.
 - Wall sköter väggarnas kollision och logik.
 - Bullet sköter logik för skotten som spelaren skjuter ut.
-- CollisionHandler är huvudklassen för all kollisionsdetektering.
 - EnemySpawner skapar fiender 
 - BackGround är klassen för att lägga till en bakgrund samt sköter den text som visas.
 */

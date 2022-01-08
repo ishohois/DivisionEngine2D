@@ -7,9 +7,11 @@
 
 namespace diva
 {
-
-    #define SCREENWIDTH 1280
-    #define SCREENHEIGHT 720
+    /* Denna klass tillhär spelmotorn
+    
+ */
+#define SCREENWIDTH 1280
+#define SCREENHEIGHT 720
 
     struct SystemResources
     {
