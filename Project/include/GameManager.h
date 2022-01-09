@@ -46,6 +46,7 @@ namespace diva
         void addCollider(BoxCollider2D &b);
         void removeCollider(BoxCollider2D &b);
         void runGameLoop();
+        void clean();
     };
 
 };

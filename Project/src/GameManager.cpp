@@ -103,8 +103,6 @@ namespace diva
             b->~BoxCollider2D();
         }
         removed.clear();
-        
-
     }
 
     void GameManager::render()
@@ -142,5 +140,24 @@ namespace diva
             render();
             time->frameRateCap(nextTick);
         }
+
+        clean();
+    }
+
+    void GameManager::clean()
+    {
+        for (auto it = gameObjects.begin(); it != gameObjects.end(); it++)
+        {
+            gameObjects.erase(it);
+        }
+
+        for (auto it = colliders.begin(); it != colliders.end(); it++)
+        {
+            colliders.erase(it);
+        }
+
+        TextureManager::getInstance()->cleanUp();
+
+        std::cout << "All resources released and memory have been cleaned." << std::endl;
     }
 };
