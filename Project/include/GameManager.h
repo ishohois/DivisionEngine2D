@@ -17,10 +17,10 @@ namespace diva
     private:
         GameManager(){};
         static GameManager *instance;
-        std::vector<GameObject *> gameObjects;  //
-        std::vector<GameObject *> added;        //
-        std::vector<GameObject *> removed;      //
-        std::vector<BoxCollider2D *> colliders; //
+        std::vector<GameObject *> gameObjects; 
+        std::vector<GameObject *> added;       
+        std::vector<GameObject *> removed;      
+        std::vector<BoxCollider2D *> colliders; 
         std::vector<BoxCollider2D *> addedC;
         std::vector<BoxCollider2D *> removedC;
 
